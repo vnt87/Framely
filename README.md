@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center">Framely</h1>  
+<p align="center">The open-source drag-and-drop website builder boilerplate.</p>
 
-## Getting Started
+[Introduction](#introduction) · [Features](#features) · [Demo](#demo) · [Roadmap](#roadmap) · [Contributing](#contributing)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Introduction
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Framely is a full-stack Next.js application offering multi-tenancy, custom domain support, and a flexible drag-and-drop web editor.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🚧 **This project is currently under active development.** Some features are already functional, while most are still being actively built. Contributions and feedback are highly appreciated to shape its final form!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features (Current & Planned)
 
-To learn more about Next.js, take a look at the following resources:
+### ✅ **Current Features**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Authentication:** User authentication powered by Clerk.
+- **Dashboard:** Create and view pages.
+- **Backend Logic for the Website Builder:** Core backend functionality for handling website structure and data.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🚀 **Coming Soon...**
 
-## Deploy on Vercel
+- **Drag-and-Drop Website Builder:** Fully customizable, user-friendly interface for creating web pages.
+- **Multi-Tenancy:** Full support for subdomains and custom domains.
+- **Dynamic OG Cards:** Automatic Open Graph image generation for user content.
+- **Image Uploads:** Drag-and-drop image uploads for adding visual content to web pages.
+- **Page Analytics:** Track page performance and user behavior.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Demo
+
+_A live demo will be available soon. Watch this space!_
+
+---
+
+## Tech Stack
+
+This project is built with the following tools and services:
+
+- **Next.js**: React-based framework for building web applications.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Shadcn**: UI component library.
+- **Prisma & MySQL**: Database ORM and relational database.
+- **Clerk Authentication**: Secure and flexible user authentication service.
+
+---
+
+## Contributing
+
+We welcome contributions!
+
+1. **Start a Discussion:** Share your ideas, feedback, or questions.
+2. **Open an Issue:** Report bugs or suggest improvements.
+3. **Submit Pull Requests:** Check out the roadmap or add your own feature enhancements.
+
+---
+
+## Author
+
+- Bela Strittmatter _[@belastrittmatter](https://twitter.com/belastrittmatter)_
+
+---
+
+## License
+
+This project is open-sourced under the MIT License.
