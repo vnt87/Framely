@@ -1,14 +1,14 @@
 import React from "react";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "../components/dashboard/sidebar";
+import PageList from "../components/dashboard/page-list";
 
 type Props = {};
 
 const Dashboard = (props: Props) => {
   return (
-    <div>
+    <div className="flex w-screen h-screen">
       <AppSidebar />
-      <SidebarTrigger />
+      <PageList />
     </div>
   );
 };

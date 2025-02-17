@@ -20,6 +20,7 @@ model Page {
   title        String
   previewImage String? @db.Text
   content      String? @db.LongText
+  subdomain    String  @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

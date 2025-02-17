@@ -1,6 +1,6 @@
 "use client";
 import { Dispatch, createContext, useContext, useReducer } from "react";
-import { ElementTypes } from "../lib/constants";
+import { ElementTypes } from "../../lib/constants";
 import { EditorAction } from "./editor-actions";
 import { Page } from "@prisma/client";
 

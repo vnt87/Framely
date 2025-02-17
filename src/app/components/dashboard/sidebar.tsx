@@ -22,7 +22,6 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import {
-  ArrowBigUpDash,
   Github,
   Globe,
   LayoutDashboard,
@@ -33,7 +32,7 @@ import {
 
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },
-  { title: "Sites", url: "#", icon: Globe },
+  { title: "Pages", url: "#", icon: Globe },
   { title: "Settings", url: "#", icon: Settings },
 ];
 

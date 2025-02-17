@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { dark } from "@clerk/themes";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,12 +26,11 @@ export default function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en" className={inter.className}>
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
-            <SidebarProvider>{children}</SidebarProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <SidebarProvider>
+              {children}
+              <Toaster />
+            </SidebarProvider>
           </ThemeProvider>
         </body>
       </html>
