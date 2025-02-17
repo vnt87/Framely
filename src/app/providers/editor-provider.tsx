@@ -1,3 +1,4 @@
+"use client";
 import { Dispatch, createContext, useContext, useReducer } from "react";
 import { ElementTypes } from "../lib/constants";
 import { EditorAction } from "./editor-actions";
