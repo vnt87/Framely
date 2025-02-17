@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="#introduction"><strong>Introduction</strong></a> ·
-  <a href="##features-current--planned"><strong>Features</strong></a> ·
+  <a href="#features-current--planned"><strong>Features</strong></a> ·
   <a href="#demo"><strong>Demo</strong></a> ·
   <a href="#contributing"><strong>Contributing</strong></a>
 </p>
