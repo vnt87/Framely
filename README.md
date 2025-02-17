@@ -1,7 +1,13 @@
 <h1 align="center">Framely</h1>  
 <p align="center">The open-source drag-and-drop website builder boilerplate.</p>
 
-[Introduction](#introduction) · [Features](#features) · [Demo](#demo) · [Roadmap](#roadmap) · [Contributing](#contributing)
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#features"><strong>Features</strong></a> ·
+  <a href="#demo"><strong>Demo</strong></a> ·
+  <a href="#roadmap"><strong>Roadmap</strong></a> ·
+  <a href="#contributing"><strong>Contributing</strong></a>
+</p>
 
 ---
 
