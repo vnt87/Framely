@@ -64,12 +64,6 @@ We welcome contributions!
 
 ---
 
-## Author
-
-- Bela Strittmatter _[@belastrittmatter](https://twitter.com/belastrittmatter)_
-
----
-
 ## License
 
 This project is open-sourced under the MIT License.

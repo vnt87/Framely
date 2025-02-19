@@ -27,8 +27,8 @@ export default function NewPageModal() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await createPage({ title, subdomain });
-    if (res?.error !== undefined) {
-      toast("Error", { description: res.error });
+    if (res.success === false) {
+      toast("Error", { description: res.msg });
       return;
     } else if (res.page) {
       toast("Success", { description: title + " has been created." });
