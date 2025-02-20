@@ -24,9 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
-      <html lang="en" className={inter.className}>
+      <html lang="en" className={inter.className} suppressHydrationWarning>
         <body>
-          <ThemeProvider attribute="class" defaultTheme="dark">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+          >
             <SidebarProvider>
               {children}
               <Toaster />
