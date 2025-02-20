@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
+  ClerkLoading,
   SignInButton,
   SignOutButton,
   SignedIn,
@@ -29,6 +30,7 @@ import {
   MoveUpRight,
   Settings,
 } from "lucide-react";
+import { Suspense } from "react";
 
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },
@@ -94,6 +96,15 @@ const AppSidebar = () => {
         <Separator />
         <SidebarMenu>
           <SidebarMenuItem>
+            <ClerkLoading>
+              <div className="flex items-center gap-2 p-2">
+                <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />
+                <div className="space-y-1 flex-1">
+                  <div className="h-4 w-24 bg-muted rounded animate-pulse" />
+                  <div className="h-3 w-16 bg-muted rounded animate-pulse" />
+                </div>
+              </div>
+            </ClerkLoading>
             <SignedIn>
               <div className="flex items-center w-full justify-between">
                 <UserButton
