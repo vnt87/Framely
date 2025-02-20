@@ -14,11 +14,22 @@ export async function createPage({ title, subdomain }: PageProps) {
 
   if (!userId) return { success: false, msg: "User not signed in" };
 
-  const page = await db.page.create({
-    data: { userId: userId, title: title, subdomain: subdomain },
+  const existingPage = await db.page.findFirst({
+    where: { subdomain: subdomain }
   });
 
-  return { success: true, page: page };
+  if (existingPage) {
+    return { success: false, msg: "Subdomain is already in use" };
+  }
+
+  try {
+    const page = await db.page.create({
+      data: { userId: userId, title: title, subdomain: subdomain },
+    });
+    return { success: true, page: page };
+  } catch (error) {
+    return { success: false, msg: "Failed to create page" };
+  }
 }
 
 type UpsertProps = Partial<Page>;
@@ -46,4 +57,22 @@ export async function upsertPage({
   });
 
   return { success: true, page: page };
+}
+
+export async function deletePage(pageId: string) {
+  const { userId } = await auth();
+
+  if (!userId) return { success: false, msg: "User not signed in" };
+
+  try {
+    await db.page.delete({
+      where: { 
+        id: pageId,
+        userId: userId
+      },
+    });
+    return { success: true };
+  } catch (error) {
+    return { success: false, msg: "Failed to delete page" };
+  }
 }

@@ -5,7 +5,6 @@ import type React from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
@@ -17,22 +16,51 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { createPage } from "@/app/actions/page";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createPageSchema } from "@/lib/validations/page";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import * as z from "zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+type FormData = z.infer<typeof createPageSchema>;
 
 export default function NewPageModal() {
   const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [subdomain, setSubdomain] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const res = await createPage({ title, subdomain });
-    if (res.success === false) {
-      toast("Error", { description: res.msg });
-      return;
-    } else if (res.page) {
-      toast("Success", { description: title + " has been created." });
-      redirect(`/editor/${res.page.id}`);
+  const form = useForm<FormData>({
+    resolver: zodResolver(createPageSchema),
+    defaultValues: {
+      title: "",
+      subdomain: "",
+    },
+  });
+
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    try {
+      const res = await createPage(data);
+      if (res.success === false) {
+        toast.error("Error", { description: res.msg });
+      } else if (res.page) {
+        toast.success("Success", { description: data.title + " has been created." });
+        setOpen(false);
+        router.refresh();
+      }
+    } catch (error) {
+      toast.error("Error", { description: error instanceof Error ? error.message : "Something went wrong" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -48,38 +76,53 @@ export default function NewPageModal() {
             Enter the details for your new page.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit}>
-          <div className="grid gap-4 py-4">
-            <div className="grid gap-2">
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="subdomain"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Subdomain</FormLabel>
+                  <FormControl>
+                    <div className="flex">
+                      <Input {...field} className="rounded-r-none" />
+                      <div className="inline-flex items-center rounded-r-md border border-l-0 border-input bg-muted px-3 text-sm text-muted-foreground">
+                        .framely.site
+                      </div>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Separator className="my-4" />
+            <div className="flex justify-end">
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  </>
+                ) : (
+                  "Create Page"
+                )}
+              </Button>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="subdomain">Subdomain</Label>
-              <div className="flex">
-                <Input
-                  id="subdomain"
-                  value={subdomain}
-                  onChange={(e) => setSubdomain(e.target.value)}
-                  className="rounded-r-none"
-                />
-                <div className="inline-flex items-center rounded-r-md border border-l-0 border-input bg-muted px-3 text-sm text-muted-foreground">
-                  .framely.site
-                </div>
-              </div>
-            </div>
-          </div>
-          <Separator className="my-4" />
-          <div className="flex justify-end">
-            <Button type="submit" className="w-full">
-              Create Page
-            </Button>
-          </div>
-        </form>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );
