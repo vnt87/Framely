@@ -22,6 +22,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import {
+  ChartLine,
   Github,
   Globe,
   LayoutDashboard,
@@ -33,6 +34,7 @@ import {
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },
   { title: "Pages", url: "#", icon: Globe },
+  { title: "Analytics", url: "#", icon: ChartLine },
   { title: "Settings", url: "#", icon: Settings },
 ];
 
