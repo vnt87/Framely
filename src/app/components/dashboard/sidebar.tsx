@@ -20,7 +20,6 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-  useAuth,
 } from "@clerk/nextjs";
 import {
   Github,
@@ -30,7 +29,6 @@ import {
   MoveUpRight,
   Settings,
 } from "lucide-react";
-import { Suspense } from "react";
 
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },

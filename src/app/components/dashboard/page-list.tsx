@@ -5,7 +5,10 @@ import { auth } from "@clerk/nextjs/server";
 import PageItem from "./page-item";
 async function PageList() {
   const { userId } = await auth();
-  const pages = await db.page.findMany({ where: { userId: userId || "" } });
+  const pages = await db.page.findMany({
+    where: { userId: userId || "" },
+    orderBy: { updatedAt: "desc" },
+  });
 
   return (
     <div className="w-full p-6">

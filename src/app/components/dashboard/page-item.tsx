@@ -32,12 +32,12 @@ function PageItem({ page }: { page: Page }) {
   return (
     <Card>
       <CardHeader className="group flex flex-row items-start justify-between gap-4 space-y-0">
-        <div className="flex-1 space-y-3">
+        <div className="flex-1">
           <Link
             href={`/editor/${page.id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 space-y-3"
+            className="flex-1"
           >
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">

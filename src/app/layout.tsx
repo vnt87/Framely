@@ -4,9 +4,8 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/lib/theme-provider";
-import { dark } from "@clerk/themes";
 import { Toaster } from "sonner";
-
+import { dark } from "@clerk/themes";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -23,12 +22,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <ClerkProvider>
       <html lang="en" className={inter.className} suppressHydrationWarning>
         <body>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             disableTransitionOnChange
           >
             <SidebarProvider>
