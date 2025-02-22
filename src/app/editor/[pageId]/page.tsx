@@ -3,6 +3,8 @@ import EditorProvider from "@/app/providers/editor-provider";
 import { redirect } from "next/navigation";
 import React from "react";
 import EditorNavigation from "../../components/editor/editor-navigation";
+import EditorSidebar from "@/app/components/editor/editor-sidebar";
+import { auth } from "@clerk/nextjs/server";
 
 type Props = {
   params: {
@@ -11,6 +13,8 @@ type Props = {
 };
 
 const Page = async ({ params }: Props) => {
+  const session = await auth();
+
   const { pageId } = await params;
   const pageDetails = await db.page.findFirst({
     where: {
@@ -18,7 +22,8 @@ const Page = async ({ params }: Props) => {
     },
   });
 
-  if (!pageDetails) {
+  // TODO: Display access denied page, add ability for users to request access (?)
+  if (!pageDetails || !(session.userId === pageDetails.userId)) {
     return redirect("/");
   }
 
@@ -26,6 +31,7 @@ const Page = async ({ params }: Props) => {
     <div className="overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageId={pageId} pageDetails={pageDetails} />
+        <EditorSidebar userId={session.userId} />
       </EditorProvider>
     </div>
   );

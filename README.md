@@ -54,6 +54,13 @@ This project is built with the following tools and services:
 
 ---
 
+## Resources
+
+Creating Framely would not have been possible without the following resources:
+
+- [**YouTube video by Web Prodigies**](https://www.youtube.com/watch?v=6omuUOZcWL0&t=49054s) – An in-depth tutorial on creating the underlying editor technology.
+- [**Vercel's guide to multi-tenancy**](https://vercel.com/guides/nextjs-multi-tenant-application)
+
 ## Contributing
 
 We welcome contributions!
