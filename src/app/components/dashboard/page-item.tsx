@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { deletePage } from "@/app/actions/page";
+import { deletePage } from "@/lib/actions/page";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,19 +31,19 @@ function PageItem({ page }: { page: Page }) {
 
   return (
     <Card>
-      <CardHeader className="group flex flex-row items-start justify-between gap-4 space-y-0">
+      <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 group">
         <div className="flex-1">
           <Link
-            href={`/editor/${page.id}`}
+            href={`http://editor.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${page.id}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
           >
             <div className="flex items-center gap-2">
-              <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">
+              <h2 className="text-xl font-semibold transition-colors group-hover:text-primary">
                 {page.title}
               </h2>
-              <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-50 transition-opacity" />
+              <ExternalLink className="w-4 h-4 transition-opacity opacity-0 group-hover:opacity-50" />
             </div>
           </Link>
         </div>
@@ -52,15 +52,15 @@ function PageItem({ page }: { page: Page }) {
             <Button
               variant="ghost"
               size="icon"
-              className="h-8 w-8 hover:bg-accent/50"
+              className="w-8 h-8 hover:bg-accent/50"
             >
-              <MoreHorizontal className="h-5 w-5" />
+              <MoreHorizontal className="w-5 h-5" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem
-              className="text-destructive flex items-center gap-2"
+              className="flex items-center gap-2 text-destructive"
               onClick={() => handleDelete(page.id)}
             >
               Delete
@@ -70,10 +70,10 @@ function PageItem({ page }: { page: Page }) {
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-6 text-sm text-muted-foreground">
-          <div className="group flex items-center gap-2 hover:cursor-pointer">
-            <Globe className="group-hover:text-primary w-4 h-4 flex-shrink-0 mt-1" />
+          <div className="flex items-center gap-2 group hover:cursor-pointer">
+            <Globe className="flex-shrink-0 w-4 h-4 mt-1 group-hover:text-primary" />
             <Link
-              href={`https://${page.subdomain}.framely.site`}
+              href={`https://${page.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}
               target="_blank"
               rel="noopener noreferrer"
               className="group-hover:text-primary"
@@ -82,7 +82,7 @@ function PageItem({ page }: { page: Page }) {
             </Link>
           </div>
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 flex-shrink-0 mt-1" />
+            <Clock className="flex-shrink-0 w-4 h-4 mt-1" />
             <span>Updated {formatTimeAgo(Number(page.updatedAt))}</span>
           </div>
         </div>

@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { createPage } from "@/app/actions/page";
+import { createPage } from "@/lib/actions/page";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -53,12 +53,17 @@ export default function NewPageModal() {
       if (res.success === false) {
         toast.error("Error", { description: res.msg });
       } else if (res.page) {
-        toast.success("Success", { description: data.title + " has been created." });
+        toast.success("Success", {
+          description: data.title + " has been created.",
+        });
         setOpen(false);
         router.refresh();
       }
     } catch (error) {
-      toast.error("Error", { description: error instanceof Error ? error.message : "Something went wrong" });
+      toast.error("Error", {
+        description:
+          error instanceof Error ? error.message : "Something went wrong",
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import { getPageDetails } from "@/app/actions/page";
+import { getPageDetails } from "@/lib/actions/page";
 import { useEditor } from "@/app/providers/editor-provider";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";

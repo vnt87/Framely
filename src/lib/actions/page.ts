@@ -88,3 +88,21 @@ export async function getPageDetails(pageId: string) {
     return { success: false, msg: "Failed to fetch page details" };
   }
 }
+
+export const getPageByDomain = async (subdomainName: string) => {
+  try {
+    const response = await db.page.findUnique({
+      where: {
+        subdomain: subdomainName,
+      },
+    });
+
+    if (!response) {
+      return { success: false, msg: "Page not found" };
+    }
+
+    return { success: true, page: response };
+  } catch (error) {
+    return { success: false, msg: "Failed to fetch page by domain" };
+  }
+};

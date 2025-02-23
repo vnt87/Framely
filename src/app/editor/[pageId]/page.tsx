@@ -6,6 +6,7 @@ import EditorNavigation from "../../components/editor/editor-navigation";
 import EditorSidebar from "@/app/components/editor/editor-sidebar";
 import { auth } from "@clerk/nextjs/server";
 import PageEditor from "@/app/components/editor/page-editor";
+import { SignIn } from "@clerk/nextjs";
 
 type Props = {
   params: {
@@ -25,7 +26,7 @@ const Page = async ({ params }: Props) => {
 
   // TODO: Display access denied page, add ability for users to request access (?)
   if (!pageDetails || !(session.userId === pageDetails.userId)) {
-    return redirect("/");
+    return <SignIn />;
   }
 
   return (

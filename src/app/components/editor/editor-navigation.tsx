@@ -1,5 +1,5 @@
 "use client";
-import { upsertPage } from "@/app/actions/page";
+import { upsertPage } from "@/lib/actions/page";
 import { DeviceTypes, useEditor } from "@/app/providers/editor-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,7 +91,7 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
       className={`border-b-[1px] flex items-center justify-between p-6 gap-2 transition-all w-screen ${state.editor.previewMode ? "!h-0 !p-0 !overflow-hidden" : ""}`}
     >
       <aside className="flex items-center gap-4 max-w-[260px] w-[300px]">
-        <Link href="/">
+        <Link href={`https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}>
           <Button variant={"ghost"} size={"icon"}>
             <ChevronLeft />
           </Button>
@@ -108,15 +108,15 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
               className={titleLoading ? "animate-spin h-4 w-4" : "hidden"}
             />
           </div>
-          <a
-            href={"https://" + pageDetails.subdomain + ".framely.site"}
+          <Link
+            href={`https://editor.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${pageDetails.id}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-muted-foreground w-fit group"
           >
-            {pageDetails.subdomain + ".framely.site"}
+            {pageDetails.subdomain}.{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             <ArrowUpRightFromSquare className="hidden w-4 h-4 group-hover:block" />
-          </a>
+          </Link>
         </div>
       </aside>
       <aside>
