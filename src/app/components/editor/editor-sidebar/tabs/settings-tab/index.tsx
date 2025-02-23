@@ -12,6 +12,8 @@ import TypographySettings from "./typography-settings";
 import AppearanceSettings from "./appearance-settings";
 import { Textarea } from "@/components/ui/textarea";
 import { componentsWithCustomSettings } from "@/lib/constants";
+import TransformSettings from "./transform-settings";
+import StrokeSettings from "./stroke-settings";
 
 const SettingsTab = () => {
   const { state, dispatch } = useEditor();
@@ -135,11 +137,19 @@ const SettingsTab = () => {
               })()}
             </AccordionContent>
           </AccordionItem>
+          <TransformSettings
+            handleOnChange={handleOnChange}
+            handleSelectChange={handleSelectChange}
+          />
           <AppearanceSettings
             handleOnChange={handleOnChange}
             handleSelectChange={handleSelectChange}
           />
           <TypographySettings
+            handleOnChange={handleOnChange}
+            handleSelectChange={handleSelectChange}
+          />
+          <StrokeSettings
             handleOnChange={handleOnChange}
             handleSelectChange={handleSelectChange}
           />

@@ -1,10 +1,6 @@
 "use client";
 
 import { EditorElement, useEditor } from "@/app/providers/editor-provider";
-import { Badge } from "@/components/ui/badge";
-import { defaultStyles } from "@/lib/constants";
-import clsx from "clsx";
-import { Trash } from "lucide-react";
 import React from "react";
 import ElementWrapper from "./element-wrapper";
 

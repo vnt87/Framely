@@ -31,8 +31,6 @@ function PageEditor({ pageId, liveMode }: Props) {
         return;
       }
 
-      console.log(response.content);
-
       dispatch({
         type: "LOAD_DATA",
         payload: {

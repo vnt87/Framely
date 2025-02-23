@@ -6,17 +6,20 @@ import { createId } from "@paralleldrive/cuid2";
 import clsx from "clsx";
 import Recursive from "./recursive";
 import { Trash } from "lucide-react";
+import { useState } from "react";
 
 type Props = { element: EditorElement };
 
 function Container({ element }: Props) {
   const { id, content, name, styles, type } = element;
-
   const { state, dispatch } = useEditor();
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+
   const isSelected = state.editor.selectedElement.id === id;
 
   const handleOnDrop = (e: React.DragEvent, type: string) => {
     e.stopPropagation();
+    setIsDraggingOver(false);
     const componentType = e.dataTransfer.getData(
       "componentType"
     ) as ElementTypes;
@@ -38,6 +41,7 @@ function Container({ element }: Props) {
             },
           },
         });
+        break;
       case "container":
         dispatch({
           type: "ADD_ELEMENT",
@@ -54,6 +58,80 @@ function Container({ element }: Props) {
             },
           },
         });
+        break;
+      case "2Col":
+        dispatch({
+          type: "ADD_ELEMENT",
+          payload: {
+            containerId: id,
+            elementDetails: {
+              content: [
+                {
+                  content: [],
+                  id: createId(),
+                  name: "Container",
+                  styles: { ...defaultStyles, width: "100%" },
+                  type: "container",
+                },
+                {
+                  content: [],
+                  id: createId(),
+                  name: "Container",
+                  styles: { ...defaultStyles, width: "100%" },
+                  type: "container",
+                },
+              ],
+              id: createId(),
+              name: "Two Columns",
+              styles: {
+                ...defaultStyles,
+                display: "flex",
+              },
+              type: "2Col",
+            },
+          },
+        });
+        break;
+      case "3Col":
+        dispatch({
+          type: "ADD_ELEMENT",
+          payload: {
+            containerId: id,
+            elementDetails: {
+              content: [
+                {
+                  content: [],
+                  id: createId(),
+                  name: "Container",
+                  styles: { ...defaultStyles, width: "100%" },
+                  type: "container",
+                },
+                {
+                  content: [],
+                  id: createId(),
+                  name: "Container",
+                  styles: { ...defaultStyles, width: "100%" },
+                  type: "container",
+                },
+                {
+                  content: [],
+                  id: createId(),
+                  name: "Container",
+                  styles: { ...defaultStyles, width: "100%" },
+                  type: "container",
+                },
+              ],
+              id: createId(),
+              name: "Three Columns",
+              styles: {
+                ...defaultStyles,
+                display: "flex",
+              },
+              type: "3Col",
+            },
+          },
+        });
+        break;
       default:
     }
   };
@@ -65,6 +143,14 @@ function Container({ element }: Props) {
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+    setIsDraggingOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDraggingOver(false);
   };
 
   const handleOnClickBody = (e: React.MouseEvent) => {
@@ -83,28 +169,31 @@ function Container({ element }: Props) {
 
   return (
     <div
-      style={styles}
-      className={clsx("relative p-4 transition-all group", {
+      className={clsx("relative group my-2", {
         "max-w-full w-full": type === "container" || type === "2Col",
         "h-fit": type === "container",
-        "h-full": type === "__body",
+        "h-full overflow-scroll": type === "__body",
         "flex flex-col md:!flex-row": type === "2Col",
-        "!border-blue-500":
+        "!outline-blue-500 !outline-2":
           isSelected &&
           !state.editor.liveMode &&
-          state.editor.selectedElement.type !== "__body",
-        "!border-yellow-400 !border-4":
+          state.editor.selectedElement.type !== "__body" &&
+          !isDraggingOver,
+        "!outline-yellow-400 !outline-4":
           isSelected &&
           !state.editor.liveMode &&
           state.editor.selectedElement.type === "__body",
-        "!border-solid": isSelected && !state.editor.liveMode,
-        "border-dashed border-[1px] border-slate-300": !state.editor.liveMode,
+        "!outline-yellow-400 !outline-solid !outline-2": isDraggingOver,
+        "!outline-4": isDraggingOver && type === "__body",
+        "!outline-solid": isSelected && !state.editor.liveMode,
+        "outline-dashed outline-[1px] outline-slate-300":
+          !state.editor.liveMode,
       })}
       onDrop={(e) => {
         handleOnDrop(e, id);
       }}
       onDragOver={handleDragOver}
-      draggable={type !== "__body"}
+      onDragLeave={handleDragLeave}
       onDragStart={(e) => handleDragStart(e, "container")}
       onClick={handleOnClickBody}
     >
@@ -119,10 +208,12 @@ function Container({ element }: Props) {
         {name}
       </Badge>
 
-      {Array.isArray(content) &&
-        content.map((childElement) => (
-          <Recursive key={childElement.id} element={childElement} />
-        ))}
+      <div style={styles} className="p-4">
+        {Array.isArray(content) &&
+          content.map((childElement) => (
+            <Recursive key={childElement.id} element={childElement} />
+          ))}
+      </div>
 
       {isSelected &&
         !state.editor.liveMode &&

@@ -10,6 +10,12 @@ function Recursive({ element }: Props) {
   switch (element.type) {
     case "__body":
       return <Container element={element} />;
+    case "container":
+      return <Container element={element} />;
+    case "2Col":
+      return <Container element={element} />;
+    case "3Col":
+      return <Container element={element} />;
     case "text":
       return <TextComponent element={element} />;
     default:

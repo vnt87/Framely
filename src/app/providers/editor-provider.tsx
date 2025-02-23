@@ -207,6 +207,13 @@ const editorReducer = (
       const updatedEditorStateAfterDelete = {
         ...state.editor,
         elements: updatedElementsAfterDelete,
+        selectedElement: {
+          id: "",
+          content: [],
+          name: "",
+          styles: {},
+          type: null,
+        },
       };
 
       const updatedHistoryAfterDelete = [
@@ -220,7 +227,7 @@ const editorReducer = (
         history: {
           ...state.history,
           history: updatedHistoryAfterDelete,
-          currentIndex: updatedElementsAfterDelete.length - 1,
+          currentIndex: updatedHistoryAfterDelete.length - 1,
         },
       };
 

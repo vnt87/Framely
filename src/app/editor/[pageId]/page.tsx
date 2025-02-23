@@ -29,10 +29,10 @@ const Page = async ({ params }: Props) => {
   }
 
   return (
-    <div className="overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageId={pageId} pageDetails={pageDetails} />
-        <div className="h-full flex justify-center">
+        <div className="flex justify-center flex-1 overflow-hidden">
           <PageEditor pageId={pageId} />
         </div>
         <EditorSidebar userId={session.userId} />
