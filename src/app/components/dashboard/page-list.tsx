@@ -21,9 +21,13 @@ async function PageList() {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {pages.map((page) => (
-              <PageItem key={page.id} page={page} />
-            ))}
+            {pages.length >= 1 ? (
+              pages.map((page) => <PageItem key={page.id} page={page} />)
+            ) : (
+              <p className="text-center text-muted-foreground mt-4">
+                It's pretty empty in here, create a page to get started.
+              </p>
+            )}
           </div>
         </div>
       </div>

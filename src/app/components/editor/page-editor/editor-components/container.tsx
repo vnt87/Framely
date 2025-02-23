@@ -208,7 +208,7 @@ function Container({ element }: Props) {
         {name}
       </Badge>
 
-      <div style={styles} className="p-4">
+      <div style={styles} className="p-4 h-full">
         {Array.isArray(content) &&
           content.map((childElement) => (
             <Recursive key={childElement.id} element={childElement} />

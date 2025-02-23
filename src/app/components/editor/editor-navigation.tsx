@@ -108,7 +108,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
             />
           </div>
           <Link
-            href={`https://editor.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${pageDetails.id}`}
+            href={`https://${pageDetails.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-muted-foreground w-fit group"
