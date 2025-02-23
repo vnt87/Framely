@@ -20,7 +20,7 @@ const SettingsTab = () => {
 
   const handleCustomValuesChange = (e: any) => {
     const settingProperty = e.target.id;
-    let value = e.target.value;
+    const value = e.target.value;
     const styleObject = { [settingProperty]: value };
 
     dispatch({
@@ -39,7 +39,7 @@ const SettingsTab = () => {
 
   const handleOnChange = (e: any) => {
     const styleSettings = e.target.id;
-    let value = e.target.value;
+    const value = e.target.value;
     const styleObject = {
       [styleSettings]: value,
     };

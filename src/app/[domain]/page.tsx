@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import EditorProvider from "../providers/editor-provider";
 import PageEditor from "../components/editor/page-editor";
 
-async function Page({ params }: { params: { domain: string } }) {
+async function Page({ params }: { params: Promise<{ domain: string }> }) {
   const { domain } = await params;
-  const domainData = await getPageByDomain(domain);
+
+  const domainData = await getPageByDomain(domain.toString());
   if (!domainData.success || !domainData.page) return notFound();
 
   return (

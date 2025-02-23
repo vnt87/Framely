@@ -21,13 +21,13 @@ function PageEditor({ pageId, liveMode }: Props) {
         payload: { value: true },
       });
     }
-  }, [liveMode]);
+  }, [liveMode, dispatch]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getPageDetails(pageId);
       if (response.success === false) {
-        toast.error("Error", { description: response.msg });
+        toast.error("Error", { description: response.msg as string });
         return;
       }
 
@@ -40,7 +40,7 @@ function PageEditor({ pageId, liveMode }: Props) {
       });
     };
     fetchData();
-  }, [pageId]);
+  }, [pageId, dispatch, liveMode]);
 
   const handleClick = () => {
     dispatch({ type: "CHANGE_SELECTED_ELEMENT", payload: {} });

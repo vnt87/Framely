@@ -5,7 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Toaster } from "sonner";
-import { dark } from "@clerk/themes";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",

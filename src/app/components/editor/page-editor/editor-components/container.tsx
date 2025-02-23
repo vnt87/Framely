@@ -17,7 +17,7 @@ function Container({ element }: Props) {
 
   const isSelected = state.editor.selectedElement.id === id;
 
-  const handleOnDrop = (e: React.DragEvent, type: string) => {
+  const handleOnDrop = (e: React.DragEvent) => {
     e.stopPropagation();
     setIsDraggingOver(false);
     const componentType = e.dataTransfer.getData(
@@ -190,7 +190,7 @@ function Container({ element }: Props) {
           !state.editor.liveMode,
       })}
       onDrop={(e) => {
-        handleOnDrop(e, id);
+        handleOnDrop(e);
       }}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}

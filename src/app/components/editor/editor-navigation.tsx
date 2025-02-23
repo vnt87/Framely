@@ -23,11 +23,10 @@ import React, { FocusEventHandler, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 type Props = {
-  pageId: string;
   pageDetails: Page;
 };
 
-const EditorNavigation = ({ pageId, pageDetails }: Props) => {
+const EditorNavigation = ({ pageDetails }: Props) => {
   const router = useRouter();
   const { state, dispatch } = useEditor();
   const [titleLoading, setTitleLoading] = useState(false);
@@ -35,7 +34,7 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
 
   useEffect(() => {
     dispatch({ type: "SET_PAGE_ID", payload: { pageId: pageDetails.id } });
-  }, [pageDetails]);
+  }, [pageDetails, dispatch]);
 
   const handleOnBlurTitleChange: FocusEventHandler<HTMLInputElement> = async (
     event

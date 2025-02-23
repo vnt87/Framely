@@ -28,7 +28,10 @@ export async function createPage({ title, subdomain }: PageProps) {
     });
     return { success: true, page: page };
   } catch (error) {
-    return { success: false, msg: "Failed to create page" };
+    return {
+      success: false,
+      msg: error instanceof Error ? error.message : "An unknown error occured",
+    };
   }
 }
 
@@ -73,7 +76,10 @@ export async function deletePage(pageId: string) {
     });
     return { success: true };
   } catch (error) {
-    return { success: false, msg: "Failed to delete page" };
+    return {
+      success: false,
+      msg: error instanceof Error ? error.message : "An unknown error occured",
+    };
   }
 }
 
@@ -85,7 +91,10 @@ export async function getPageDetails(pageId: string) {
     }
     return { success: true, content: res.content };
   } catch (error) {
-    return { success: false, msg: "Failed to fetch page details" };
+    return {
+      success: false,
+      msg: error instanceof Error ? error.message : "An unknown error occured",
+    };
   }
 }
 
@@ -103,6 +112,9 @@ export const getPageByDomain = async (subdomainName: string) => {
 
     return { success: true, page: response };
   } catch (error) {
-    return { success: false, msg: "Failed to fetch page by domain" };
+    return {
+      success: false,
+      msg: error instanceof Error ? error.message : "An unknown error occured",
+    };
   }
 };

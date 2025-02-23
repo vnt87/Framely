@@ -14,7 +14,7 @@ import ThreeColPlaceholder from "./placeholders/three-col-placeholder";
 function ComponentsTab() {
   const elements: {
     Component: React.ReactNode;
-    label: String;
+    label: string;
     id: ElementTypes;
     group: "layout" | "element";
   }[] = [

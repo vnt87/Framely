@@ -1,11 +1,5 @@
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  ImageIcon,
-  Layers,
-  PlusIcon,
-  SettingsIcon,
-  SquareStackIcon,
-} from "lucide-react";
+import { ImageIcon, Layers, PlusIcon, SettingsIcon } from "lucide-react";
 
 function TabList() {
   return (

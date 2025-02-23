@@ -14,12 +14,8 @@ import { TabsContent } from "@radix-ui/react-tabs";
 import SettingsTab from "./tabs/settings-tab";
 import ComponentsTab from "./tabs/components-tab";
 
-type Props = {
-  userId: string;
-};
-
-const EditorSidebar = ({ userId }: Props) => {
-  const { state, dispatch } = useEditor();
+const EditorSidebar = () => {
+  const { state } = useEditor();
 
   return (
     <Sheet open={true} modal={false}>

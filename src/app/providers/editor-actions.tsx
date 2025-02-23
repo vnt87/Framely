@@ -25,7 +25,7 @@ export type EditorAction =
       payload: {
         elementDetails?:
           | EditorElement
-          | { id: ""; content: []; name: ""; styles: {}; type: null };
+          | { id: ""; content: []; name: ""; styles: object; type: null };
       };
     }
   | {
