@@ -25,7 +25,7 @@ async function PageList() {
               pages.map((page) => <PageItem key={page.id} page={page} />)
             ) : (
               <p className="text-center text-muted-foreground mt-4">
-                It's pretty empty in here, create a page to get started.
+                It&apos;s pretty empty in here, create a page to get started.
               </p>
             )}
           </div>
