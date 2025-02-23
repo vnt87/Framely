@@ -1,3 +1,4 @@
+<img alt="Framely Website Builder" src="/public/thumbnail.png">
 <h1 align="center">Framely</h1>  
 <p align="center">The open-source drag-and-drop website builder boilerplate.</p>
 
