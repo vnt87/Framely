@@ -10,7 +10,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
 import { useForwardedRef } from "@/lib/forward-ref";
 
 interface ColorPickerProps {
@@ -39,7 +38,7 @@ const ColorPicker = forwardRef<
         <PopoverTrigger asChild disabled={disabled} onBlur={onBlur}>
           <Button
             {...props}
-            className={cn("block", className)}
+            className={cn("block min-w-9", className)}
             name={name}
             onClick={() => {
               setOpen(true);

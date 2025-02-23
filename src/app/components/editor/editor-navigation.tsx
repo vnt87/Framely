@@ -31,6 +31,7 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
   const router = useRouter();
   const { state, dispatch } = useEditor();
   const [titleLoading, setTitleLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     dispatch({ type: "SET_PAGE_ID", payload: { pageId: pageDetails.id } });
@@ -72,6 +73,7 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
   };
 
   const handleOnSave = async () => {
+    setIsSaving(true);
     const res = await upsertPage({
       id: pageDetails.id,
       content: JSON.stringify(state.editor.elements),
@@ -81,6 +83,7 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
     } else {
       toast("Success", { description: "Your changes have been saved." });
     }
+    setIsSaving(false);
   };
 
   return (
@@ -177,7 +180,9 @@ const EditorNavigation = ({ pageId, pageDetails }: Props) => {
         <div className="flex flex-row items-center gap-4 mx-4">
           Draft <Switch disabled defaultChecked /> Public
         </div>
-        <Button onClick={handleOnSave}>Save</Button>
+        <Button onClick={handleOnSave} disabled={isSaving} className="w-[67px]">
+          {isSaving ? <Loader2 className="animate-spin" /> : "Save"}
+        </Button>
       </aside>
     </nav>
   );
