@@ -12,6 +12,7 @@ import clsx from "clsx";
 import TabList from "./tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
 import SettingsTab from "./tabs/settings-tab";
+import ComponentsTab from "./tabs/components-tab";
 
 type Props = {
   userId: string;
@@ -45,6 +46,12 @@ const EditorSidebar = ({ userId }: Props) => {
                 <SheetTitle>Styles</SheetTitle>
               </SheetHeader>
               <SettingsTab />
+            </TabsContent>
+            <TabsContent value="components">
+              <SheetHeader className="text-left p-6">
+                <SheetTitle>Components</SheetTitle>
+              </SheetHeader>
+              <ComponentsTab />
             </TabsContent>
           </div>
         </SheetContent>

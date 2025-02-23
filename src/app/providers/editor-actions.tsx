@@ -35,7 +35,7 @@ export type EditorAction =
       };
     }
   | { type: "TOGGLE_PREVIEW_MODE" }
-  | { type: "TOGGLE_LIVE_MODE" }
+  | { type: "TOGGLE_LIVE_MODE"; payload?: { value: boolean } }
   | { type: "UNDO" }
   | { type: "REDO" }
   | {

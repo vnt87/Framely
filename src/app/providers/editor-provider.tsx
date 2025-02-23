@@ -11,7 +11,7 @@ export type EditorElement = {
   styles: React.CSSProperties;
   name: string;
   type: ElementTypes;
-  content: EditorElement[] | { href?: string };
+  content: EditorElement[] | { href?: string; innerText?: string };
 };
 
 export type Editor = {
@@ -270,7 +270,10 @@ const editorReducer = (
     case "TOGGLE_LIVE_MODE":
       const toggleLiveMode = {
         ...state,
-        editor: { ...state.editor, liveMode: !state.editor.liveMode },
+        editor: {
+          ...state.editor,
+          liveMode: action.payload?.value || !state.editor.liveMode,
+        },
       };
 
       return toggleLiveMode;

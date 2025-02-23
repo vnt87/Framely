@@ -5,6 +5,7 @@ import React from "react";
 import EditorNavigation from "../../components/editor/editor-navigation";
 import EditorSidebar from "@/app/components/editor/editor-sidebar";
 import { auth } from "@clerk/nextjs/server";
+import PageEditor from "@/app/components/editor/page-editor";
 
 type Props = {
   params: {
@@ -31,6 +32,9 @@ const Page = async ({ params }: Props) => {
     <div className="overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageId={pageId} pageDetails={pageDetails} />
+        <div className="h-full flex justiy-center">
+          <PageEditor pageId={pageId} />
+        </div>
         <EditorSidebar userId={session.userId} />
       </EditorProvider>
     </div>

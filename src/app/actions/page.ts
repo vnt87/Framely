@@ -15,7 +15,7 @@ export async function createPage({ title, subdomain }: PageProps) {
   if (!userId) return { success: false, msg: "User not signed in" };
 
   const existingPage = await db.page.findFirst({
-    where: { subdomain: subdomain }
+    where: { subdomain: subdomain },
   });
 
   if (existingPage) {
@@ -66,13 +66,25 @@ export async function deletePage(pageId: string) {
 
   try {
     await db.page.delete({
-      where: { 
+      where: {
         id: pageId,
-        userId: userId
+        userId: userId,
       },
     });
     return { success: true };
   } catch (error) {
     return { success: false, msg: "Failed to delete page" };
+  }
+}
+
+export async function getPageDetails(pageId: string) {
+  try {
+    const res = await db.page.findUnique({ where: { id: pageId } });
+    if (!res) {
+      throw new Error("Database Error");
+    }
+    return { success: true, content: res.content };
+  } catch (error) {
+    return { success: false, msg: "Failed to fetch page details" };
   }
 }

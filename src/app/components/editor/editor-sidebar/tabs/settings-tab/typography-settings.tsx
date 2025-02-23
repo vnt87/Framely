@@ -14,7 +14,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from "lucide-react";
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  AlignRight,
+  CaseLower,
+  CaseSensitive,
+  CaseUpper,
+  Type,
+} from "lucide-react";
 
 type Props = {
   handleOnChange: (e: any) => void;
@@ -28,7 +37,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
     <AccordionItem value="Typography" className="px-6 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Typography</AccordionTrigger>
       <AccordionContent>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-1">
           <div className="w-full">
             <p className="text-muted-foreground mb-2">Color</p>
             <div className="flex space-x-2">
@@ -52,7 +61,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
-              <p className="text-muted-foreground">Font Family</p>
+              <p className="text-muted-foreground">Font</p>
               <Select
                 onValueChange={(value: string) =>
                   handleSelectChange(value, "fontFamily")
@@ -89,7 +98,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="text-muted-foreground">Font Weight</p>
+              <p className="text-muted-foreground">Weight</p>
               <Select
                 onValueChange={(value: string) =>
                   handleSelectChange(value, "fontWeight")
@@ -123,7 +132,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <p className="text-muted-foreground">Font Size</p>
+              <p className="text-muted-foreground">Size</p>
               <Input
                 id="fontSize"
                 type="text"
@@ -166,21 +175,63 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
               >
                 <TabsList className="w-full grid grid-cols-4">
                   <TabsTrigger value="left">
-                    <AlignLeft strokeWidth={2} className="h-4 w-4 scale-[2]" />
+                    <AlignLeft
+                      strokeWidth={2}
+                      className="h-4 w-4 scale-[2.5]"
+                    />
                   </TabsTrigger>
                   <TabsTrigger value="center">
                     <AlignCenter
                       strokeWidth={2}
-                      className="h-4 w-4 scale-[2]"
+                      className="h-4 w-4 scale-[2.5]"
                     />
                   </TabsTrigger>
                   <TabsTrigger value="right">
-                    <AlignRight strokeWidth={2} className="h-4 w-4 scale-[2]" />
+                    <AlignRight
+                      strokeWidth={2}
+                      className="h-4 w-4 scale-[2.5]"
+                    />
                   </TabsTrigger>
                   <TabsTrigger value="justify">
                     <AlignJustify
                       strokeWidth={2}
-                      className="h-4 w-4 scale-[2]"
+                      className="h-4 w-4 scale-[2.5]"
+                    />
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="text-muted-foreground">Transform</p>
+              <Tabs
+                value={
+                  state.editor.selectedElement.styles.textTransform || "normal"
+                }
+                onValueChange={(value: string) =>
+                  handleSelectChange(value, "textTransform")
+                }
+                className="w-full"
+              >
+                <TabsList className="w-full grid grid-cols-4">
+                  <TabsTrigger value="normal">
+                    <Type strokeWidth={2} className="h-4 w-4 scale-[2.5]" />
+                  </TabsTrigger>
+                  <TabsTrigger value="capitalize">
+                    <CaseSensitive
+                      strokeWidth={2}
+                      className="h-4 w-4 scale-[2.5]"
+                    />
+                  </TabsTrigger>
+                  <TabsTrigger value="uppercase">
+                    <CaseUpper
+                      strokeWidth={2}
+                      className="h-4 w-4 scale-[2.5]"
+                    />
+                  </TabsTrigger>
+                  <TabsTrigger value="lowercase">
+                    <CaseLower
+                      strokeWidth={2}
+                      className="h-4 w-4 scale-[2.5]"
                     />
                   </TabsTrigger>
                 </TabsList>
