@@ -40,7 +40,7 @@ Framely is a full-stack Next.js application offering multi-tenancy, custom domai
 
 ## Demo
 
-_A live demo will be available soon. Watch this space!_
+[**View the live Demo**](https://framely.site)
 
 ---
 

@@ -5,6 +5,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -22,6 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+      <SpeedInsights />
+      <Analytics />
       <html lang="en" className={inter.className} suppressHydrationWarning>
         <body>
           <ThemeProvider
