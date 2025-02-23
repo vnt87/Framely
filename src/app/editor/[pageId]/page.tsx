@@ -32,7 +32,7 @@ const Page = async ({ params }: Props) => {
     <div className="overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageId={pageId} pageDetails={pageDetails} />
-        <div className="h-full flex justiy-center">
+        <div className="h-full flex justify-center">
           <PageEditor pageId={pageId} />
         </div>
         <EditorSidebar userId={session.userId} />

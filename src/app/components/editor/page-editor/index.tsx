@@ -60,8 +60,8 @@ function PageEditor({ pageId, liveMode }: Props) {
         {
           "!p-0 !mr-0":
             state.editor.previewMode === true || state.editor.liveMode === true,
-          "!w-[420px] mx-auto": state.editor.device === "Mobile",
-          "!w-[850px] mx-auto": state.editor.device === "Tablet",
+          "!w-[420px]": state.editor.device === "Mobile",
+          "!w-[850px]": state.editor.device === "Tablet",
           "!w-full": state.editor.device === "Desktop",
         }
       )}
