@@ -71,6 +71,27 @@ const EditorNavigation = ({ pageDetails }: Props) => {
     dispatch({ type: "REDO" });
   };
 
+  const handleSwitchToggle = async (checked: boolean) => {
+    const res = await upsertPage({
+      visible: checked,
+      id: pageDetails.id,
+    });
+
+    if (res.success === false) {
+      toast("Error", { description: res.msg });
+    } else if (res.page) {
+      toast("Success", {
+        description: res.page.visible
+          ? "Your page is now visible to the whole wide world!"
+          : "Your page is only accessible to you now.",
+      });
+      dispatch({
+        type: "TOGGLE_VISIBILITY_STATUS",
+        payload: { value: res.page.visible },
+      });
+    }
+  };
+
   const handleOnSave = async () => {
     setIsSaving(true);
     const res = await upsertPage({
@@ -177,7 +198,13 @@ const EditorNavigation = ({ pageDetails }: Props) => {
           <Redo2 />
         </Button>
         <div className="flex flex-row items-center gap-4 mx-4">
-          Draft <Switch disabled defaultChecked /> Public
+          Draft{" "}
+          <Switch
+            defaultChecked={false}
+            checked={state.editor.visible}
+            onCheckedChange={handleSwitchToggle}
+          />{" "}
+          Public
         </div>
         <Button onClick={handleOnSave} disabled={isSaving} className="w-[67px]">
           {isSaving ? <Loader2 className="animate-spin" /> : "Save"}

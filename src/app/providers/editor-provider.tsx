@@ -18,6 +18,7 @@ export type Editor = {
   pageId: string;
   liveMode: boolean;
   previewMode: boolean;
+  visible: boolean;
   elements: EditorElement[];
   selectedElement: EditorElement;
   device: DeviceTypes;
@@ -53,6 +54,7 @@ const initialEditorState: EditorState["editor"] = {
   device: "Desktop",
   previewMode: false,
   liveMode: false,
+  visible: false,
   pageId: "",
 };
 
@@ -284,6 +286,17 @@ const editorReducer = (
       };
 
       return toggleLiveMode;
+
+    case "TOGGLE_VISIBILITY_STATUS":
+      const toggleVisibilityStatus = {
+        ...state,
+        editor: {
+          ...state.editor,
+          visible: action.payload?.value || !state.editor.visible,
+        },
+      };
+
+      return toggleVisibilityStatus;
 
     case "REDO":
       if (state.history.currentIndex < state.history.history.length - 1) {

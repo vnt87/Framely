@@ -43,6 +43,7 @@ export async function upsertPage({
   subdomain,
   previewImage,
   content,
+  visible,
 }: UpsertProps) {
   const { userId } = await auth();
 
@@ -56,6 +57,7 @@ export async function upsertPage({
       subdomain: subdomain,
       previewImage: previewImage,
       content: content,
+      visible: visible,
     },
   });
 
@@ -108,6 +110,18 @@ export const getPageByDomain = async (subdomainName: string) => {
 
     if (!response) {
       return { success: false, msg: "Page not found" };
+    }
+
+    if (!response.visible) {
+      const session = await auth();
+      if (!(session.userId === response.userId))
+        return {
+          success: false,
+          msg: "The requested page is private (for now), come back later!",
+          private: true,
+        };
+
+      return { success: "true", page: response };
     }
 
     return { success: true, page: response };

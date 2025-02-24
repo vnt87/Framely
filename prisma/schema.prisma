@@ -19,6 +19,9 @@ model Page {
 
   title        String
   previewImage String? @db.Text
+  favicon      String? @db.Text
+  // Whether or not the page requires authentication - "public" is a reserverd keyword
+  visible      Boolean @default(false)
   content      String? @db.LongText
   subdomain    String  @unique
 
