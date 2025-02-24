@@ -72,6 +72,11 @@ const EditorNavigation = ({ pageDetails }: Props) => {
   };
 
   const handleSwitchToggle = async (checked: boolean) => {
+    dispatch({
+      type: "TOGGLE_VISIBILITY_STATUS",
+      payload: { value: checked },
+    });
+
     const res = await upsertPage({
       visible: checked,
       id: pageDetails.id,
@@ -79,15 +84,15 @@ const EditorNavigation = ({ pageDetails }: Props) => {
 
     if (res.success === false) {
       toast("Error", { description: res.msg });
+      dispatch({
+        type: "TOGGLE_VISIBILITY_STATUS",
+        payload: { value: !checked },
+      });
     } else if (res.page) {
       toast("Success", {
         description: res.page.visible
           ? "Your page is now visible to the whole wide world!"
           : "Your page is only accessible to you now.",
-      });
-      dispatch({
-        type: "TOGGLE_VISIBILITY_STATUS",
-        payload: { value: res.page.visible },
       });
     }
   };

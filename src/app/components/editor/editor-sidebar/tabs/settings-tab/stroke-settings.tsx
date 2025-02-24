@@ -39,7 +39,7 @@ function StrokeSettings({ handleOnChange }: Props) {
                 handleOnChange(e);
               }}
               id="borderColor"
-              value={state.editor.selectedElement.styles.color || "#ffff"}
+              value={state.editor.selectedElement.styles.borderColor || "#ffff"}
             />
           </div>
         </div>

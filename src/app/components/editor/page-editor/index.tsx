@@ -56,7 +56,7 @@ function PageEditor({ pageId, liveMode }: Props) {
       className={clsx(
         "use-animation-zoom-in h-full overflow-scroll mr-[385px] bg-background transition-all rounded-md p-12",
         {
-          "!p-0 !mr-0":
+          "!p-0 !m-0":
             state.editor.previewMode === true || state.editor.liveMode === true,
           "!w-[420px]": state.editor.device === "Mobile",
           "!w-[850px]": state.editor.device === "Tablet",

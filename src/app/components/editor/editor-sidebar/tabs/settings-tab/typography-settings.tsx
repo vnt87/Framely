@@ -24,6 +24,7 @@ import {
   CaseUpper,
   Type,
 } from "lucide-react";
+import { useState } from "react";
 
 type Props = {
   handleOnChange: (e: any) => void;
@@ -32,6 +33,9 @@ type Props = {
 
 const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
   const { state } = useEditor();
+  const [inputColor, setInputColor] = useState(
+    state.editor.selectedElement.styles.color || "#ffffff"
+  );
 
   return (
     <AccordionItem value="Typography" className="px-6 py-0 border-y-[1px]">
@@ -45,16 +49,24 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
                 onChange={(color: string) => {
                   const e = { target: { id: "color", value: color } };
                   handleOnChange(e);
+                  setInputColor(color);
                 }}
                 id="Color"
-                value={state.editor.selectedElement.styles.color || "#ffff"}
+                value={state.editor.selectedElement.styles.color || "#ffffff"}
               />
               <Input
                 id="color"
                 type="text"
                 maxLength={7}
-                value={state.editor.selectedElement.styles.color || "#ffff"}
-                onChange={handleOnChange}
+                value={inputColor}
+                onChange={(e) => {
+                  const color = e.target.value;
+                  setInputColor(color);
+                  if (color.match(/^#[0-9A-Fa-f]{6}$/)) {
+                    const event = { target: { id: "color", value: color } };
+                    handleOnChange(event);
+                  }
+                }}
               />
             </div>
           </div>

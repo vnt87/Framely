@@ -169,10 +169,13 @@ function Container({ element }: Props) {
 
   return (
     <div
-      className={clsx("relative group my-2", {
-        "max-w-full w-full": type === "container" || type === "2Col",
-        "h-fit": type === "container",
+      className={clsx("relative group my-1", {
+        "max-w-full w-full":
+          (type === "container" || type === "2Col") && !styles?.width,
+        "h-fit": type === "container" && !styles?.height,
         "h-full overflow-scroll": type === "__body",
+        "!h-screen !m-0 !rounded-none":
+          type === "__body" && state.editor.liveMode,
         "flex flex-col md:!flex-row": type === "2Col",
         "!outline-blue-500 !outline-2":
           isSelected &&
@@ -189,6 +192,7 @@ function Container({ element }: Props) {
         "outline-dashed outline-[1px] outline-slate-300":
           !state.editor.liveMode,
       })}
+      style={{ width: styles?.width, height: styles?.height }}
       onDrop={(e) => {
         handleOnDrop(e);
       }}
@@ -208,7 +212,10 @@ function Container({ element }: Props) {
         {name}
       </Badge>
 
-      <div style={styles} className="p-4 h-full">
+      <div
+        style={{ ...styles, width: undefined, height: undefined }}
+        className="p-4 h-full w-full"
+      >
         {Array.isArray(content) &&
           content.map((childElement) => (
             <Recursive key={childElement.id} element={childElement} />

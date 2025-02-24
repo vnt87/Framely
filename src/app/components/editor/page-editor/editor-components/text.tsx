@@ -15,7 +15,7 @@ function TextComponent({ element }: Props) {
     <ElementWrapper element={element}>
       <div
         style={element.styles}
-        className="p-[2px] w-full m-[5px] relative text-[16px] transition-all overflow-auto"
+        className="p-[2px] w-full relative text-[16px] transition-all overflow-auto"
       >
         <span
           contentEditable={!state.editor.liveMode}

@@ -28,7 +28,11 @@ function ElementWrapper({ element, children }: Props) {
 
   return (
     <div
-      className={clsx("relative", {
+      style={{
+        width: element.styles.width || "auto",
+        height: element.styles.height || "auto",
+      }}
+      className={clsx("relative p-0", {
         "!border-blue-500 !border-2":
           isSelected &&
           !state.editor.liveMode &&
@@ -53,7 +57,7 @@ function ElementWrapper({ element, children }: Props) {
         </Badge>
       )}
 
-      {children}
+      <div className="overflow-hidden">{children}</div>
 
       {isSelected &&
         !state.editor.liveMode &&
