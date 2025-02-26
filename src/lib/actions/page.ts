@@ -3,6 +3,7 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { Page } from "@prisma/client";
+import { revalidateTag, unstable_cache } from "next/cache";
 
 type PageProps = {
   title: string;
@@ -61,6 +62,8 @@ export async function upsertPage({
     },
   });
 
+  revalidateTag(page.subdomain);
+
   return { success: true, page: page };
 }
 
@@ -70,12 +73,15 @@ export async function deletePage(pageId: string) {
   if (!userId) return { success: false, msg: "User not signed in" };
 
   try {
-    await db.page.delete({
+    const response = await db.page.delete({
       where: {
         id: pageId,
         userId: userId,
       },
     });
+
+    revalidateTag(response.subdomain);
+
     return { success: true };
   } catch (error) {
     return {
@@ -102,11 +108,22 @@ export async function getPageDetails(pageId: string) {
 
 export const getPageByDomain = async (subdomainName: string) => {
   try {
-    const response = await db.page.findUnique({
-      where: {
-        subdomain: subdomainName,
+    const response = await unstable_cache(
+      async () => {
+        const response = await db.page.findUnique({
+          where: {
+            subdomain: subdomainName,
+          },
+        });
+
+        return response;
       },
-    });
+      [subdomainName],
+      {
+        revalidate: 900, // 15 Minutes
+        tags: [subdomainName],
+      }
+    )();
 
     if (!response) {
       return { success: false, msg: "Page not found" };
@@ -116,12 +133,12 @@ export const getPageByDomain = async (subdomainName: string) => {
       const session = await auth();
       if (!(session.userId === response.userId))
         return {
-          success: false,
+          success: true,
           msg: "The requested page is private (for now), come back later!",
           private: true,
         };
 
-      return { success: "true", page: response };
+      return { success: true, page: response };
     }
 
     return { success: true, page: response };

@@ -103,8 +103,11 @@ export default function NewPageModal() {
                 <FormItem>
                   <FormLabel>Subdomain</FormLabel>
                   <FormControl>
-                    <div className="flex">
-                      <Input {...field} className="rounded-r-none" />
+                    <div className="flex focus-within:ring-1 focus-within:ring-ring focus-within:ring-offset-2 rounded-md ">
+                      <Input
+                        {...field}
+                        className="rounded-r-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      />
                       <div className="inline-flex items-center rounded-r-md border border-l-0 border-input bg-muted px-3 text-sm text-muted-foreground">
                         .framely.site
                       </div>
