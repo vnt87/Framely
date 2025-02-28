@@ -15,6 +15,8 @@
 
 Framely is a full-stack Next.js application offering multi-tenancy, custom domain support, and a flexible drag-and-drop web editor.
 
+<img alt="Framely Demo Gif" src="/public/demo.gif">
+
 🚧 **This project is currently under active development.** Some features are already functional, while most are still being actively built. Contributions and feedback are highly appreciated to shape its final form!
 
 ---
