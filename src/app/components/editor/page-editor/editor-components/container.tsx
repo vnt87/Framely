@@ -177,6 +177,10 @@ function Container({ element }: Props) {
         "!h-screen !m-0 !rounded-none":
           type === "__body" && state.editor.liveMode,
         "flex flex-col md:!flex-row": type === "2Col",
+        "!w-[350px]": type === "__body" && state.editor.device === "Mobile",
+        "!w-[800px]": type === "__body" && state.editor.device === "Tablet",
+        "!w-full": type === "__body" && state.editor.device === "Desktop",
+        "transition-[width,height]": type == "__body",
         "!outline-blue-500 !outline-2":
           isSelected &&
           !state.editor.liveMode &&

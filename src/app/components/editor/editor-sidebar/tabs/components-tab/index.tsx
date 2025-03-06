@@ -44,39 +44,48 @@ function ComponentsTab() {
     },
   ];
 
+  const handleDragStart = (e: React.DragEvent, type: ElementTypes) => {
+    if (type === null) return;
+    e.dataTransfer.setData("componentType", type);
+  };
+
   return (
     <Accordion
       type="multiple"
       className="w-full"
       defaultValue={["Layout", "Elements"]}
     >
-      <AccordionItem value="Layout" className="px-6 py-0">
+      <AccordionItem value="Layout" className="px-2 py-0">
         <AccordionTrigger className="!no-underline">Layout</AccordionTrigger>
-        <AccordionContent className="grid grid-cols-3">
+        <AccordionContent>
           {elements
             .filter((element) => element.group === "layout")
             .map((element) => (
               <div
                 key={element.id}
-                className="flex flex-col items-center justify-center"
+                className="flex items-center gap-2 mb-2 bg-sidebar-accent p-2 rounded-md cursor-pointer"
+                draggable
+                onDragStart={(e) => {handleDragStart(e, element.id)}}
               >
                 {element.Component}
-                <span className="text-center text-muted-foreground">
+                <span className="text-muted-foreground">
                   {element.label}
                 </span>
               </div>
             ))}
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="Elements" className="px-6 py-0">
+      <AccordionItem value="Elements" className="px-2 py-0">
         <AccordionTrigger className="!no-underline">Elements</AccordionTrigger>
-        <AccordionContent className="grid grid-cols-3">
+        <AccordionContent>
           {elements
             .filter((element) => element.group === "element")
             .map((element) => (
               <div
                 key={element.id}
-                className="flex flex-col items-center justify-center"
+                className="flex items-center gap-2 mb-2 bg-sidebar-accent p-2 rounded-md cursor-pointer"
+                draggable
+                onDragStart={(e) => {handleDragStart(e, element.id)}}
               >
                 {element.Component}
                 <span className="text-muted-foreground">{element.label}</span>

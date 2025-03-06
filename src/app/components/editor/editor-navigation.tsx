@@ -113,7 +113,9 @@ const EditorNavigation = ({ pageDetails }: Props) => {
 
   return (
     <nav
-      className={`border-b-[1px] flex items-center justify-between p-6 gap-2 transition-all w-screen ${state.editor.previewMode ? "!h-0 !p-0 !overflow-hidden" : ""}`}
+      className={`border-b-[1px] flex items-center justify-between py-2 px-6 gap-2 transition-all w-screen ${
+        state.editor.previewMode ? "!h-0 !p-0 !overflow-hidden" : ""
+      }`}
     >
       <aside className="flex items-center gap-4 max-w-[260px] w-[300px]">
         <Link href={`https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}>

@@ -17,7 +17,7 @@ function AppearanceSettings({ handleOnChange }: Props) {
   const { state } = useEditor();
 
   return (
-    <AccordionItem value="Appearance" className="px-6 py-0 border-y-[1px]">
+    <AccordionItem value="Appearance" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Appearance</AccordionTrigger>
       <AccordionContent className="flex flex-col gap-4 px-1">
         <div className="w-full">

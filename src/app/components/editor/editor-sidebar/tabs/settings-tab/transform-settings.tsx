@@ -16,7 +16,7 @@ function TransformSettings({ handleOnChange }: Props) {
   const { state } = useEditor();
 
   return (
-    <AccordionItem value="Transform" className="px-6 py-0 border-y-[1px]">
+    <AccordionItem value="Transform" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Transform</AccordionTrigger>
       <AccordionContent className="flex flex-col gap-4 px-1">
         <div className="grid grid-cols-2 gap-4">

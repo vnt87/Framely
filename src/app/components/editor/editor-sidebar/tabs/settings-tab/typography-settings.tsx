@@ -38,7 +38,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
   );
 
   return (
-    <AccordionItem value="Typography" className="px-6 py-0 border-y-[1px]">
+    <AccordionItem value="Typography" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Typography</AccordionTrigger>
       <AccordionContent>
         <div className="flex flex-col gap-4 px-1">

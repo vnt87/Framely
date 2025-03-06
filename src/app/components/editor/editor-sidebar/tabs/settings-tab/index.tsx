@@ -89,76 +89,66 @@ const SettingsTab = () => {
         "Stroke",
       ]}
     >
-      {state.editor.selectedElement.type !== null ? (
-        <>
-          <AccordionItem
-            value="Custom"
-            className="px-6 py-0"
-            hidden={
-              !componentsWithCustomSettings.includes(
-                state.editor.selectedElement.type
-              )
-            }
-          >
-            <AccordionTrigger className="!no-underline">
-              Custom
-            </AccordionTrigger>
-            <AccordionContent>
-              {(() => {
-                if (Array.isArray(state.editor.selectedElement.content))
-                  return null;
+      <AccordionItem
+        value="Custom"
+        className="px-2 py-0"
+        hidden={
+          !componentsWithCustomSettings.includes(
+            state.editor.selectedElement.type
+          )
+        }
+      >
+        <AccordionTrigger className="!no-underline">Custom</AccordionTrigger>
+        <AccordionContent>
+          {(() => {
+            if (Array.isArray(state.editor.selectedElement.content))
+              return null;
 
-                switch (state.editor.selectedElement.type) {
-                  case "link":
-                    return (
-                      <div className="flex flex-col gap-2">
-                        <p className="text-muted-foreground">Link Path</p>
-                        <Input
-                          id="href"
-                          placeholder="https:www.framely.site/editor"
-                          onChange={handleCustomValuesChange}
-                          value={state.editor.selectedElement.content.href}
-                        />
-                      </div>
-                    );
-                  case "text":
-                    return (
-                      <div className="flex flex-col gap-2 p-1">
-                        <p className="text-muted-foreground">Content</p>
-                        <Textarea
-                          id="innerText"
-                          placeholder="Enter text..."
-                          onChange={handleCustomValuesChange}
-                          value={state.editor.selectedElement.content.innerText}
-                        />
-                      </div>
-                    );
-                }
-              })()}
-            </AccordionContent>
-          </AccordionItem>
-          <TransformSettings
-            handleOnChange={handleOnChange}
-            handleSelectChange={handleSelectChange}
-          />
-          <AppearanceSettings
-            handleOnChange={handleOnChange}
-            handleSelectChange={handleSelectChange}
-          />
-          <TypographySettings
-            handleOnChange={handleOnChange}
-            handleSelectChange={handleSelectChange}
-          />
-          <StrokeSettings
-            handleOnChange={handleOnChange}
-            handleSelectChange={handleSelectChange}
-          />
-        </>
-      ) : (
-        <p className="px-6 py-0 text-muted-foreground">
-          Select a component to start customizing it
-        </p>
-      )}
+            switch (state.editor.selectedElement.type) {
+              case "link":
+                return (
+                  <div className="flex flex-col gap-2">
+                    <p className="text-muted-foreground">Link Path</p>
+                    <Input
+                      id="href"
+                      placeholder="https:www.framely.site/editor"
+                      onChange={handleCustomValuesChange}
+                      value={state.editor.selectedElement.content.href}
+                    />
+                  </div>
+                );
+              case "text":
+                return (
+                  <div className="flex flex-col gap-2">
+                    <p className="text-muted-foreground">Content</p>
+                    <Textarea
+                      id="innerText"
+                      placeholder="Enter text..."
+                      onChange={handleCustomValuesChange}
+                      value={state.editor.selectedElement.content.innerText}
+                    />
+                  </div>
+                );
+            }
+          })()}
+        </AccordionContent>
+      </AccordionItem>
+      <TransformSettings
+        handleOnChange={handleOnChange}
+        handleSelectChange={handleSelectChange}
+      />
+      <AppearanceSettings
+        handleOnChange={handleOnChange}
+        handleSelectChange={handleSelectChange}
+      />
+      <TypographySettings
+        handleOnChange={handleOnChange}
+        handleSelectChange={handleSelectChange}
+      />
+      <StrokeSettings
+        handleOnChange={handleOnChange}
+        handleSelectChange={handleSelectChange}
+      />
     </Accordion>
   );
 };

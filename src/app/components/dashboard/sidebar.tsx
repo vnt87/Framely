@@ -12,6 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarProvider,
 } from "@/components/ui/sidebar";
 import {
   ClerkLoading,
@@ -124,7 +125,7 @@ const AppSidebar = () => {
               </div>
             </SignedIn>
             <SignedOut>
-              <SignInButton mode="modal">
+              <SignInButton mode="redirect">
                 <Button className="w-full">Sign in</Button>
               </SignInButton>
             </SignedOut>
