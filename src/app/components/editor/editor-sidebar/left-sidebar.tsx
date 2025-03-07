@@ -49,7 +49,7 @@ const LeftSidebar = () => {
             </SidebarGroup>
             <SidebarSeparator className="w-[1px] h-screen" />
             <SidebarGroup
-              className={`w-full transition-opacity duration-200 ${
+              className={`w-full transition-opacity duration-200 overflow-auto ${
                 open ? "opacity-100" : "opacity-0"
               }`}
             >

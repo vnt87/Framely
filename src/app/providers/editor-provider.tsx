@@ -1,6 +1,6 @@
 "use client";
 import { Dispatch, createContext, useContext, useReducer } from "react";
-import { ElementTypes } from "../../lib/constants";
+import { CategoryTypes, ElementTypes } from "../../lib/constants";
 import { EditorAction } from "./editor-actions";
 import { Page } from "@prisma/client";
 
@@ -11,6 +11,7 @@ export type EditorElement = {
   styles: React.CSSProperties;
   name: string;
   type: ElementTypes;
+  category: CategoryTypes;
   content: EditorElement[] | { href?: string; innerText?: string };
 };
 
@@ -42,6 +43,7 @@ const initialEditorState: EditorState["editor"] = {
       name: "Body",
       styles: {},
       type: "__body",
+      category: "Container",
     },
   ],
   selectedElement: {
@@ -50,6 +52,7 @@ const initialEditorState: EditorState["editor"] = {
     name: "",
     styles: {},
     type: null,
+    category: null,
   },
   device: "Desktop",
   previewMode: false,
@@ -180,6 +183,7 @@ const editorReducer = (
               name: "",
               styles: {},
               type: null,
+              category: null,
             },
       };
 
@@ -215,6 +219,7 @@ const editorReducer = (
           name: "",
           styles: {},
           type: null,
+          category: null,
         },
       };
 
@@ -246,6 +251,7 @@ const editorReducer = (
             name: "",
             styles: {},
             type: null,
+            category: null,
           },
         },
         history: {

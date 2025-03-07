@@ -11,9 +11,9 @@ import { Input } from "@/components/ui/input";
 import TypographySettings from "./typography-settings";
 import AppearanceSettings from "./appearance-settings";
 import { Textarea } from "@/components/ui/textarea";
-import { componentsWithCustomSettings } from "@/lib/constants";
 import TransformSettings from "./transform-settings";
 import StrokeSettings from "./stroke-settings";
+import { categoriesWithCustomSettings } from "@/lib/constants";
 
 const SettingsTab = () => {
   const { state, dispatch } = useEditor();
@@ -93,8 +93,8 @@ const SettingsTab = () => {
         value="Custom"
         className="px-2 py-0"
         hidden={
-          !componentsWithCustomSettings.includes(
-            state.editor.selectedElement.type
+          !categoriesWithCustomSettings.includes(
+            state.editor.selectedElement.category
           )
         }
       >
@@ -104,8 +104,8 @@ const SettingsTab = () => {
             if (Array.isArray(state.editor.selectedElement.content))
               return null;
 
-            switch (state.editor.selectedElement.type) {
-              case "link":
+            switch (state.editor.selectedElement.category) {
+              case "Link":
                 return (
                   <div className="flex flex-col gap-2">
                     <p className="text-muted-foreground">Link Path</p>
@@ -117,7 +117,7 @@ const SettingsTab = () => {
                     />
                   </div>
                 );
-              case "text":
+              case "Text":
                 return (
                   <div className="flex flex-col gap-2">
                     <p className="text-muted-foreground">Content</p>

@@ -4,49 +4,20 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ElementTypes } from "@/lib/constants";
 import React from "react";
 import ElementPlaceholder from "./element-placeholder";
-import {
-  Columns2,
-  Columns3,
-  Container,
-  LucideIcon,
-  SquareDashed,
-  Text,
-} from "lucide-react";
+import { elements } from "./elements";
 
 function ComponentsTab() {
-  const elements: {
-    label: string;
-    id: ElementTypes;
-    group: "layout" | "element";
-    icon: LucideIcon;
-  }[] = [
-    {
-      label: "Text",
-      id: "text",
-      group: "element",
-      icon: Text,
-    },
-    {
-      label: "Container",
-      id: "container",
-      group: "layout",
-      icon: SquareDashed,
-    },
-    {
-      label: "2 Columns",
-      id: "2Col",
-      group: "layout",
-      icon: Columns2,
-    },
-    {
-      label: "3 Columns",
-      id: "3Col",
-      group: "layout",
-      icon: Columns3,
-    },
+  const layoutCategories = [
+    ...new Set(
+      elements.filter((el) => el.group === "layout").map((el) => el.category)
+    ),
+  ];
+  const elementCategories = [
+    ...new Set(
+      elements.filter((el) => el.group === "element").map((el) => el.category)
+    ),
   ];
 
   return (
@@ -58,31 +29,57 @@ function ComponentsTab() {
       <AccordionItem value="Layout" className="px-2 py-0">
         <AccordionTrigger className="!no-underline">Layout</AccordionTrigger>
         <AccordionContent>
-          {elements
-            .filter((element) => element.group === "layout")
-            .map((element) => (
-              <ElementPlaceholder
-                key={element.id}
-                type={element.id}
-                Icon={element.icon}
-                title={element.label}
-              />
-            ))}
+          {layoutCategories.map((category) => (
+            <div key={category} className="mb-4">
+              <h4 className="mb-2 text-xs font-medium text-muted-foreground">
+                {category}
+              </h4>
+              <div>
+                {elements
+                  .filter(
+                    (element) =>
+                      element.group === "layout" &&
+                      element.category === category
+                  )
+                  .map((element) => (
+                    <ElementPlaceholder
+                      key={element.id}
+                      type={element.id}
+                      Icon={element.icon}
+                      title={element.label}
+                    />
+                  ))}
+              </div>
+            </div>
+          ))}
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="Elements" className="px-2 py-0">
         <AccordionTrigger className="!no-underline">Elements</AccordionTrigger>
         <AccordionContent>
-          {elements
-            .filter((element) => element.group === "element")
-            .map((element) => (
-              <ElementPlaceholder
-                key={element.id}
-                type={element.id}
-                Icon={element.icon}
-                title={element.label}
-              />
-            ))}
+          {elementCategories.map((category) => (
+            <div key={category} className="mb-4">
+              <h4 className="mb-2 text-xs font-medium text-muted-foreground">
+                {category}
+              </h4>
+              <div>
+                {elements
+                  .filter(
+                    (element) =>
+                      element.group === "element" &&
+                      element.category === category
+                  )
+                  .map((element) => (
+                    <ElementPlaceholder
+                      key={element.id}
+                      type={element.id}
+                      Icon={element.icon}
+                      title={element.label}
+                    />
+                  ))}
+              </div>
+            </div>
+          ))}
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -16,7 +16,10 @@ function Recursive({ element }: Props) {
       return <Container element={element} />;
     case "3Col":
       return <Container element={element} />;
-    case "text":
+  }
+
+  switch (element.category) {
+    case "Text":
       return <TextComponent element={element} />;
     default:
       return null;

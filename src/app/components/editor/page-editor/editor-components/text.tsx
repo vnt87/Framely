@@ -1,7 +1,7 @@
 "use client";
 
 import { EditorElement, useEditor } from "@/app/providers/editor-provider";
-import React from "react";
+import { JSX } from "react";
 import ElementWrapper from "./element-wrapper";
 
 type Props = {
@@ -11,31 +11,40 @@ type Props = {
 function TextComponent({ element }: Props) {
   const { state, dispatch } = useEditor();
 
+  const handleBlur = (e: React.FocusEvent<Element>) => {
+    const textElement = e.target as HTMLElement;
+    const newText = textElement.innerText.trim();
+    dispatch({
+      type: "UPDATE_ELEMENT",
+      payload: {
+        elementDetails: {
+          ...element,
+          content: { innerText: newText },
+        },
+      },
+    });
+  };
+
+  const TextTag = element.type as keyof JSX.IntrinsicElements;
+
   return (
     <ElementWrapper element={element}>
       <div
         style={element.styles}
-        className="p-[2px] w-full relative text-[16px] transition-all overflow-auto"
+        className="p-[2px] w-full relative transition-all overflow-auto"
       >
-        <span
+        <TextTag
           contentEditable={!state.editor.liveMode}
           suppressContentEditableWarning
-          onBlur={(e) => {
-            const spanElement = e.target as HTMLElement;
-            dispatch({
-              type: "UPDATE_ELEMENT",
-              payload: {
-                elementDetails: {
-                  ...element,
-                  content: { innerText: spanElement.innerText },
-                },
-              },
-            });
-          }}
+          onBlur={handleBlur}
           className="border-none outline-none"
+          style={{
+            margin: 0,
+            padding: 0,
+          }}
         >
           {!Array.isArray(element.content) && element.content.innerText}
-        </span>
+        </TextTag>
       </div>
     </ElementWrapper>
   );

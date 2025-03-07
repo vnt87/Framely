@@ -16,7 +16,7 @@ function ElementPlaceholder({ type, title, Icon }: Props) {
 
   return (
     <div
-      className="flex items-center p-2 mb-2 cursor-pointer gap-2 bg-sidebar-accent rounded-md"
+      className="flex items-center gap-2 p-2 mb-2 rounded-md cursor-pointer bg-sidebar-accent"
       draggable
       onDragStart={(e) => {
         handleDragStart(e, type);
