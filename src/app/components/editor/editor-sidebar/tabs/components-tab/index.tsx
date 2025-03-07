@@ -6,48 +6,48 @@ import {
 } from "@/components/ui/accordion";
 import { ElementTypes } from "@/lib/constants";
 import React from "react";
-import TextPlaceholder from "./placeholders/text-placeholder";
-import ContainerPlaceholder from "./placeholders/container-placeholder";
-import TwoColPlaceholder from "./placeholders/two-col-placeholder";
-import ThreeColPlaceholder from "./placeholders/three-col-placeholder";
+import ElementPlaceholder from "./element-placeholder";
+import {
+  Columns2,
+  Columns3,
+  Container,
+  LucideIcon,
+  SquareDashed,
+  Text,
+} from "lucide-react";
 
 function ComponentsTab() {
   const elements: {
-    Component: React.ReactNode;
     label: string;
     id: ElementTypes;
     group: "layout" | "element";
+    icon: LucideIcon;
   }[] = [
     {
-      Component: <TextPlaceholder />,
       label: "Text",
       id: "text",
       group: "element",
+      icon: Text,
     },
     {
-      Component: <ContainerPlaceholder />,
       label: "Container",
       id: "container",
       group: "layout",
+      icon: SquareDashed,
     },
     {
-      Component: <TwoColPlaceholder />,
       label: "2 Columns",
       id: "2Col",
       group: "layout",
+      icon: Columns2,
     },
     {
-      Component: <ThreeColPlaceholder />,
       label: "3 Columns",
       id: "3Col",
       group: "layout",
+      icon: Columns3,
     },
   ];
-
-  const handleDragStart = (e: React.DragEvent, type: ElementTypes) => {
-    if (type === null) return;
-    e.dataTransfer.setData("componentType", type);
-  };
 
   return (
     <Accordion
@@ -61,17 +61,12 @@ function ComponentsTab() {
           {elements
             .filter((element) => element.group === "layout")
             .map((element) => (
-              <div
+              <ElementPlaceholder
                 key={element.id}
-                className="flex items-center gap-2 mb-2 bg-sidebar-accent p-2 rounded-md cursor-pointer"
-                draggable
-                onDragStart={(e) => {handleDragStart(e, element.id)}}
-              >
-                {element.Component}
-                <span className="text-muted-foreground">
-                  {element.label}
-                </span>
-              </div>
+                type={element.id}
+                Icon={element.icon}
+                title={element.label}
+              />
             ))}
         </AccordionContent>
       </AccordionItem>
@@ -81,15 +76,12 @@ function ComponentsTab() {
           {elements
             .filter((element) => element.group === "element")
             .map((element) => (
-              <div
+              <ElementPlaceholder
                 key={element.id}
-                className="flex items-center gap-2 mb-2 bg-sidebar-accent p-2 rounded-md cursor-pointer"
-                draggable
-                onDragStart={(e) => {handleDragStart(e, element.id)}}
-              >
-                {element.Component}
-                <span className="text-muted-foreground">{element.label}</span>
-              </div>
+                type={element.id}
+                Icon={element.icon}
+                title={element.label}
+              />
             ))}
         </AccordionContent>
       </AccordionItem>
