@@ -108,7 +108,7 @@ export default function NewPageModal() {
                         {...field}
                         className="rounded-r-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       />
-                      <div className="inline-flex items-center rounded-r-md border border-l-0 border-input bg-muted px-3 text-sm text-muted-foreground">
+                      <div className="inline-flex items-center px-3 text-sm border border-l-0 rounded-r-md border-input bg-muted text-muted-foreground">
                         .framely.site
                       </div>
                     </div>
@@ -122,7 +122,7 @@ export default function NewPageModal() {
               <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   </>
                 ) : (
                   "Create Page"

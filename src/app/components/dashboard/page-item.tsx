@@ -43,7 +43,7 @@ function PageItem({ page }: { page: Page }) {
               <h2 className="text-xl font-semibold transition-colors group-hover:text-primary">
                 {page.title}
               </h2>
-              <ExternalLink className="w-4 h-4 transition-opacity opacity-0 group-hover:opacity-50" />
+              <ExternalLink className="w-4 h-4 opacity-0 transition-opacity group-hover:opacity-50" />
             </div>
           </Link>
         </div>

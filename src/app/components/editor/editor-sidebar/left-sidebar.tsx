@@ -32,17 +32,17 @@ const LeftSidebar = () => {
     <SidebarProvider open={open} onOpenChange={setOpen}>
       <Sidebar side="left" className="mt-[65px] w-[300px]">
         <SidebarContent>
-          <Tabs defaultValue="components" className="w-full flex">
-            <SidebarGroup className="w-16 flex-shrink-0">
+          <Tabs defaultValue="components" className="flex w-full">
+            <SidebarGroup className="flex-shrink-0 w-16">
               <TabList
                 tabs={[
                   {
                     value: "components",
-                    icon: <PlusIcon className="h-4 w-4" />,
+                    icon: <PlusIcon className="w-4 h-4" />,
                   },
                   {
                     value: "layers",
-                    icon: <Layers className="h-4 w-4" />,
+                    icon: <Layers className="w-4 h-4" />,
                   },
                 ]}
               />

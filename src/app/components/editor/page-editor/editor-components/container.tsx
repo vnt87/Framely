@@ -218,7 +218,7 @@ function Container({ element }: Props) {
 
       <div
         style={{ ...styles, width: undefined, height: undefined }}
-        className="p-4 h-full w-full"
+        className="w-full h-full p-4"
       >
         {Array.isArray(content) &&
           content.map((childElement) => (

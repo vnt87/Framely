@@ -16,13 +16,13 @@ function ElementPlaceholder({ type, title, Icon }: Props) {
 
   return (
     <div
-      className="flex items-center gap-2 mb-2 bg-sidebar-accent p-2 rounded-md cursor-pointer"
+      className="flex items-center p-2 mb-2 cursor-pointer gap-2 bg-sidebar-accent rounded-md"
       draggable
       onDragStart={(e) => {
         handleDragStart(e, type);
       }}
     >
-      <div className="flex items-center justify-center rounded-sm cursor-pointer h-6 w-6 bg-muted">
+      <div className="flex items-center justify-center w-6 h-6 rounded-sm cursor-pointer bg-muted">
         <Icon size={15} className="text-muted-foreground" />
       </div>
       <span className="text-muted-foreground">{title}</span>

@@ -33,7 +33,7 @@ const Page = async ({ params }: Props) => {
     <div className="flex flex-col h-screen overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageDetails={pageDetails} />
-        <div className="flex w-full h-full relative">
+        <div className="relative flex w-full h-full">
           <div className="flex-shrink-0">
             <LeftSidebar />
           </div>

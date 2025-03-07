@@ -10,7 +10,7 @@ interface TabListProps {
 
 const TabList = ({ tabs }: TabListProps) => {
   return (
-    <TabsList className="flex flex-col items-center gap-4 bg-transparent justify-evenly h-fit overflow-hidden w-16">
+    <TabsList className="flex flex-col items-center w-16 overflow-hidden bg-transparent gap-4 justify-evenly h-fit">
       {tabs.map((tab) => (
         <TabsTrigger
           key={tab.value}

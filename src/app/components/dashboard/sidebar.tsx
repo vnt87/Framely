@@ -50,7 +50,7 @@ const externalLinks = [
 const AppSidebar = () => {
   return (
     <Sidebar>
-      <SidebarContent className="px-2 justify-between">
+      <SidebarContent className="justify-between px-2">
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -78,10 +78,10 @@ const AppSidebar = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full justify-between"
+                      className="justify-between w-full"
                     >
-                      <div className="flex space-x-3 items-center">
-                        <item.icon className="h-4 w-4" />
+                      <div className="flex items-center space-x-3">
+                        <item.icon className="w-4 h-4" />
                         <span>{item.title}</span>
                       </div>
                       <MoveUpRight />
@@ -98,16 +98,16 @@ const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <ClerkLoading>
-              <div className="flex items-center gap-2 p-2">
-                <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />
-                <div className="space-y-1 flex-1">
-                  <div className="h-4 w-24 bg-muted rounded animate-pulse" />
-                  <div className="h-3 w-16 bg-muted rounded animate-pulse" />
+              <div className="flex items-center p-2 gap-2">
+                <div className="w-8 h-8 rounded-full bg-muted animate-pulse" />
+                <div className="flex-1 space-y-1">
+                  <div className="w-24 h-4 rounded bg-muted animate-pulse" />
+                  <div className="w-16 h-3 rounded bg-muted animate-pulse" />
                 </div>
               </div>
             </ClerkLoading>
             <SignedIn>
-              <div className="flex items-center w-full justify-between">
+              <div className="flex items-center justify-between w-full">
                 <UserButton
                   appearance={{
                     elements: {

@@ -19,7 +19,7 @@ function StrokeSettings({ handleOnChange }: Props) {
   return (
     <AccordionItem value="Stroke" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Stroke</AccordionTrigger>
-      <AccordionContent className="flex flex-col gap-4 px-1">
+      <AccordionContent className="flex flex-col px-1 gap-4">
         <div>
           <p className="mb-2 text-muted-foreground">Border Width</p>
           <Input
