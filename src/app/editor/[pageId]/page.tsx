@@ -2,10 +2,11 @@ import { db } from "@/lib/db";
 import EditorProvider from "@/app/providers/editor-provider";
 import React from "react";
 import EditorNavigation from "../../components/editor/editor-navigation";
-import EditorSidebar from "@/app/components/editor/editor-sidebar";
 import { auth } from "@clerk/nextjs/server";
 import PageEditor from "@/app/components/editor/page-editor";
 import { SignIn } from "@clerk/nextjs";
+import LeftSidebar from "@/app/components/editor/editor-sidebar/left-sidebar";
+import RightSidebar from "@/app/components/editor/editor-sidebar/right-sidebar";
 
 type Props = {
   params: Promise<{
@@ -32,10 +33,17 @@ const Page = async ({ params }: Props) => {
     <div className="flex flex-col h-screen overflow-hidden">
       <EditorProvider pageId={pageId} pageDetails={pageDetails}>
         <EditorNavigation pageDetails={pageDetails} />
-        <div className="flex justify-center flex-1 overflow-hidden">
-          <PageEditor pageId={pageId} />
+        <div className="relative flex w-full h-full">
+          <div className="flex-shrink-0">
+            <LeftSidebar />
+          </div>
+          <div className="flex-1 p-0 m-0">
+            <PageEditor pageId={pageId} />
+          </div>
+          <div className="flex-shrink-0">
+            <RightSidebar />
+          </div>
         </div>
-        <EditorSidebar />
       </EditorProvider>
     </div>
   );

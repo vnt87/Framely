@@ -1,5 +1,12 @@
 export type ElementTypes =
-  | "text"
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "p"
+  | "span"
   | "container"
   | "section"
   | "link"
@@ -10,6 +17,8 @@ export type ElementTypes =
   | "__body"
   | null;
 
+export type CategoryTypes = "Container" | "Text" | "Link" | null;
+
 export const defaultStyles: React.CSSProperties = {
   backgroundPosition: "center",
   objectFit: "cover",
@@ -18,4 +27,4 @@ export const defaultStyles: React.CSSProperties = {
   opacity: "100%",
 };
 
-export const componentsWithCustomSettings: ElementTypes[] = ["text", "link"];
+export const categoriesWithCustomSettings: CategoryTypes[] = ["Text", "Link"];

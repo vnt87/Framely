@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
@@ -28,16 +27,14 @@ export default function RootLayout({
       <SpeedInsights />
       <Analytics />
       <html lang="en" className={inter.className} suppressHydrationWarning>
-        <body>
+        <body suppressHydrationWarning>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
             disableTransitionOnChange
           >
-            <SidebarProvider>
-              {children}
-              <Toaster />
-            </SidebarProvider>
+            {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

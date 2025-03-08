@@ -42,7 +42,7 @@ function ElementWrapper({ element, children }: Props) {
           !state.editor.liveMode &&
           state.editor.selectedElement.type === "__body",
         "!border-solid": isSelected && !state.editor.liveMode,
-        "border-solid border-[1px] border-slate-300": !state.editor.liveMode,
+        // "border-solid border-[1px] border-slate-300": !state.editor.liveMode,
       })}
       onClick={handleOnClickBody}
     >

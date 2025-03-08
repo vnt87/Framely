@@ -6,8 +6,8 @@ import { Suspense } from "react";
 
 function LoadingState() {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+    <div className="flex items-center justify-center w-screen h-screen">
+      <div className="w-8 h-8 border-b-2 border-gray-900 rounded-full animate-spin" />
     </div>
   );
 }
@@ -20,7 +20,7 @@ async function Page({ params }: { params: Promise<{ domain: string }> }) {
 
   if (response.private) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center">
+      <div className="flex items-center justify-center w-screen h-screen">
         <h1 className="text-xl font-medium text-gray-900">{response.msg}</h1>
       </div>
     );

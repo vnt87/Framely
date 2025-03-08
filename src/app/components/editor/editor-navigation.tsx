@@ -113,7 +113,9 @@ const EditorNavigation = ({ pageDetails }: Props) => {
 
   return (
     <nav
-      className={`border-b-[1px] flex items-center justify-between p-6 gap-2 transition-all w-screen ${state.editor.previewMode ? "!h-0 !p-0 !overflow-hidden" : ""}`}
+      className={`border-b-[1px] flex items-center justify-between py-2 px-6 gap-2 transition-all w-screen ${
+        state.editor.previewMode ? "!h-0 !p-0 !overflow-hidden" : ""
+      }`}
     >
       <aside className="flex items-center gap-4 max-w-[260px] w-[300px]">
         <Link href={`https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}>
@@ -137,7 +139,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
             href={`https://${pageDetails.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-muted-foreground w-fit group"
+            className="flex items-center text-sm gap-2 text-muted-foreground w-fit group"
           >
             {pageDetails.subdomain}.{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             <ArrowUpRightFromSquare className="hidden w-4 h-4 group-hover:block" />
@@ -156,7 +158,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
             });
           }}
         >
-          <TabsList className="grid w-full grid-cols-3 bg-transparent h-fit">
+          <TabsList className="w-full bg-transparent grid grid-cols-3 h-fit">
             <TabsTrigger
               value="Desktop"
               className="w-10 h-10 p-0 data-[state=active]:bg-muted"
@@ -202,7 +204,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
         >
           <Redo2 />
         </Button>
-        <div className="flex flex-row items-center gap-4 mx-4">
+        <div className="flex flex-row items-center mx-4 gap-4">
           Draft{" "}
           <Switch
             defaultChecked={false}

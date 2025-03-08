@@ -24,20 +24,93 @@ function Container({ element }: Props) {
       "componentType"
     ) as ElementTypes;
     switch (componentType) {
-      case "text":
+      case "h1":
+      case "h2":
+      case "h3":
+      case "h4":
+      case "h5":
+      case "h6":
         dispatch({
           type: "ADD_ELEMENT",
           payload: {
             containerId: id,
             elementDetails: {
-              content: { innerText: "Text Element" },
+              content: {
+                innerText: `Heading ${componentType.charAt(1)}`,
+              },
+              id: createId(),
+              name: `Heading ${componentType.charAt(1)}`,
+              styles: {
+                color: "black",
+                ...defaultStyles,
+                fontSize:
+                  componentType === "h1"
+                    ? "2.5rem"
+                    : componentType === "h2"
+                    ? "2rem"
+                    : componentType === "h3"
+                    ? "1.75rem"
+                    : componentType === "h4"
+                    ? "1.5rem"
+                    : componentType === "h5"
+                    ? "1.25rem"
+                    : "1rem",
+                fontWeight:
+                  componentType === "h1" || componentType === "h2"
+                    ? "700"
+                    : "600",
+                lineHeight: "1.2",
+                marginBottom: "0.5rem",
+              },
+              type: componentType,
+              category: "Text",
+            },
+          },
+        });
+        break;
+      case "p":
+        dispatch({
+          type: "ADD_ELEMENT",
+          payload: {
+            containerId: id,
+            elementDetails: {
+              content: {
+                innerText: "Paragraph",
+              },
+              id: createId(),
+              name: "Paragraph",
+              styles: {
+                color: "black",
+                ...defaultStyles,
+                fontSize: "1rem",
+                lineHeight: "1.5",
+                marginBottom: "1rem",
+              },
+              type: componentType,
+              category: "Text",
+            },
+          },
+        });
+        break;
+      case "span":
+        dispatch({
+          type: "ADD_ELEMENT",
+          payload: {
+            containerId: id,
+            elementDetails: {
+              content: {
+                innerText: "Text",
+              },
               id: createId(),
               name: "Text",
               styles: {
                 color: "black",
                 ...defaultStyles,
+                fontSize: "1rem",
+                display: "inline",
               },
-              type: "text",
+              type: componentType,
+              category: "Text",
             },
           },
         });
@@ -55,6 +128,7 @@ function Container({ element }: Props) {
                 ...defaultStyles,
               },
               type: "container",
+              category: "Container",
             },
           },
         });
@@ -72,6 +146,7 @@ function Container({ element }: Props) {
                   name: "Container",
                   styles: { ...defaultStyles, width: "100%" },
                   type: "container",
+                  category: "Container",
                 },
                 {
                   content: [],
@@ -79,6 +154,7 @@ function Container({ element }: Props) {
                   name: "Container",
                   styles: { ...defaultStyles, width: "100%" },
                   type: "container",
+                  category: "Container",
                 },
               ],
               id: createId(),
@@ -88,6 +164,7 @@ function Container({ element }: Props) {
                 display: "flex",
               },
               type: "2Col",
+              category: "Container",
             },
           },
         });
@@ -105,6 +182,7 @@ function Container({ element }: Props) {
                   name: "Container",
                   styles: { ...defaultStyles, width: "100%" },
                   type: "container",
+                  category: "Container",
                 },
                 {
                   content: [],
@@ -112,6 +190,7 @@ function Container({ element }: Props) {
                   name: "Container",
                   styles: { ...defaultStyles, width: "100%" },
                   type: "container",
+                  category: "Container",
                 },
                 {
                   content: [],
@@ -119,6 +198,7 @@ function Container({ element }: Props) {
                   name: "Container",
                   styles: { ...defaultStyles, width: "100%" },
                   type: "container",
+                  category: "Container",
                 },
               ],
               id: createId(),
@@ -128,6 +208,7 @@ function Container({ element }: Props) {
                 display: "flex",
               },
               type: "3Col",
+              category: "Container",
             },
           },
         });
@@ -177,6 +258,10 @@ function Container({ element }: Props) {
         "!h-screen !m-0 !rounded-none":
           type === "__body" && state.editor.liveMode,
         "flex flex-col md:!flex-row": type === "2Col",
+        "!w-[350px]": type === "__body" && state.editor.device === "Mobile",
+        "!w-[800px]": type === "__body" && state.editor.device === "Tablet",
+        "!w-full": type === "__body" && state.editor.device === "Desktop",
+        "transition-[width,height]": type == "__body",
         "!outline-blue-500 !outline-2":
           isSelected &&
           !state.editor.liveMode &&
@@ -214,7 +299,7 @@ function Container({ element }: Props) {
 
       <div
         style={{ ...styles, width: undefined, height: undefined }}
-        className="p-4 h-full w-full"
+        className="w-full h-full p-4"
       >
         {Array.isArray(content) &&
           content.map((childElement) => (

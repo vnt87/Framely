@@ -17,11 +17,11 @@ function AppearanceSettings({ handleOnChange }: Props) {
   const { state } = useEditor();
 
   return (
-    <AccordionItem value="Appearance" className="px-6 py-0 border-y-[1px]">
+    <AccordionItem value="Appearance" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Appearance</AccordionTrigger>
-      <AccordionContent className="flex flex-col gap-4 px-1">
+      <AccordionContent className="flex flex-col px-1 gap-4">
         <div className="w-full">
-          <p className="text-muted-foreground mb-2">Fill Color</p>
+          <p className="mb-2 text-muted-foreground">Fill Color</p>
           <div className="flex space-x-2">
             <ColorPicker
               onChange={(color: string) => {

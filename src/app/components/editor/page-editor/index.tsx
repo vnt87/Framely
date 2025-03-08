@@ -54,13 +54,10 @@ function PageEditor({ pageId, liveMode }: Props) {
   return (
     <div
       className={clsx(
-        "use-animation-zoom-in h-full overflow-scroll mr-[385px] bg-muted transition-all rounded-md p-12",
+        "use-animation-zoom-in h-full overflow-scroll bg-muted transition-all rounded-none py-12 px-20 w-full flex justify-center relative",
         {
           "!p-0 !m-0":
             state.editor.previewMode === true || state.editor.liveMode === true,
-          "!w-[420px]": state.editor.device === "Mobile",
-          "!w-[850px]": state.editor.device === "Tablet",
-          "!w-full": state.editor.device === "Desktop",
         }
       )}
       onClick={handleClick}

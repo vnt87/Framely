@@ -13,9 +13,9 @@ async function PageList() {
   return (
     <div className="w-full p-6">
       <SidebarTrigger className="w-12 h-12 mb-4" />
-      <div className="container mx-auto flex flex-col items-center">
-        <div className="w-full max-w-4xl flex flex-col space-y-8">
-          <div className="flex justify-between items-center">
+      <div className="container flex flex-col items-center mx-auto">
+        <div className="flex flex-col w-full max-w-4xl space-y-8">
+          <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Pages</h1>
             <NewPageModal />
           </div>
@@ -24,7 +24,7 @@ async function PageList() {
             {pages.length >= 1 ? (
               pages.map((page) => <PageItem key={page.id} page={page} />)
             ) : (
-              <p className="text-center text-muted-foreground mt-4">
+              <p className="mt-4 text-center text-muted-foreground">
                 It&apos;s pretty empty in here, create a page to get started.
               </p>
             )}
