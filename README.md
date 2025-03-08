@@ -34,6 +34,7 @@ Framely is a full-stack Next.js application offering multi-tenancy, custom domai
 ### 🚀 **Coming Soon...**
 
 - **Generated CSS Preview:** View and customize the generated CSS for every element
+- **Optimised NextJS Exports:** Export pages as an optimised NextJS build
 - **SEO:** Optimized SEO Ranking for custom pages
 - **Dynamic OG Cards:** Automatic Open Graph image generation for user content.
 - **Image Uploads:** Drag-and-drop image uploads for adding visual content to web pages.
