@@ -30,7 +30,7 @@ const LeftSidebar = () => {
 
   return (
     <SidebarProvider open={open} onOpenChange={setOpen}>
-      <Sidebar side="left" className="mt-[65px] w-[300px]">
+      <Sidebar side="left" className="mt-[65px] w-[300px] ">
         <SidebarContent>
           <Tabs defaultValue="components" className="flex w-full">
             <SidebarGroup className="flex-shrink-0 w-16">
@@ -49,7 +49,7 @@ const LeftSidebar = () => {
             </SidebarGroup>
             <SidebarSeparator className="w-[1px] h-screen" />
             <SidebarGroup
-              className={`w-full transition-opacity duration-200 overflow-auto ${
+              className={`w-full transition-opacity duration-200 ${
                 open ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -63,7 +63,8 @@ const LeftSidebar = () => {
                     }}
                   />
                 </SidebarGroupAction>
-                <SidebarGroupContent className="p-0">
+                {/* max height is (screen height - navbar and sidebar header height) */}
+                <SidebarGroupContent className="p-0 max-h-[calc(100vh-80px)] overflow-y-auto">
                   <ComponentsTab />
                 </SidebarGroupContent>
               </TabsContent>

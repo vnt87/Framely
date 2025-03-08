@@ -41,7 +41,7 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
     <AccordionItem value="Typography" className="px-2 py-0 border-y-[1px]">
       <AccordionTrigger className="!no-underline">Typography</AccordionTrigger>
       <AccordionContent>
-        <div className="flex flex-col px-1 gap-4">
+        <div className="flex flex-col gap-4 px-1">
           <div className="w-full">
             <p className="mb-2 text-muted-foreground">Color</p>
             <div className="flex space-x-2">
@@ -185,29 +185,23 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
                 }
                 className="w-full"
               >
-                <TabsList className="w-full grid grid-cols-4">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="left">
-                    <AlignLeft
-                      strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
-                    />
+                    <AlignLeft strokeWidth={2} className="h-4 w-4 scale-[4]" />
                   </TabsTrigger>
                   <TabsTrigger value="center">
                     <AlignCenter
                       strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
+                      className="h-4 w-4 scale-[4]"
                     />
                   </TabsTrigger>
                   <TabsTrigger value="right">
-                    <AlignRight
-                      strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
-                    />
+                    <AlignRight strokeWidth={2} className="h-4 w-4 scale-[4]" />
                   </TabsTrigger>
                   <TabsTrigger value="justify">
                     <AlignJustify
                       strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
+                      className="h-4 w-4 scale-[4]"
                     />
                   </TabsTrigger>
                 </TabsList>
@@ -224,27 +218,21 @@ const TypographySettings = ({ handleOnChange, handleSelectChange }: Props) => {
                 }
                 className="w-full"
               >
-                <TabsList className="w-full grid grid-cols-4">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="normal">
-                    <Type strokeWidth={2} className="h-4 w-4 scale-[2.5]" />
+                    <Type strokeWidth={2} className="h-4 w-4 scale-[4]" />
                   </TabsTrigger>
                   <TabsTrigger value="capitalize">
                     <CaseSensitive
                       strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
+                      className="h-4 w-4 scale-[4]"
                     />
                   </TabsTrigger>
                   <TabsTrigger value="uppercase">
-                    <CaseUpper
-                      strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
-                    />
+                    <CaseUpper strokeWidth={2} className="h-4 w-4 scale-[4]" />
                   </TabsTrigger>
                   <TabsTrigger value="lowercase">
-                    <CaseLower
-                      strokeWidth={2}
-                      className="h-4 w-4 scale-[2.5]"
-                    />
+                    <CaseLower strokeWidth={2} className="h-4 w-4 scale-[4]" />
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
