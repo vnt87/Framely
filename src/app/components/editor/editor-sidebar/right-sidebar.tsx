@@ -61,7 +61,8 @@ const RightSidebar = () => {
                   CSS Editor
                 </SidebarGroupLabel>
                 <SidebarGroupContent className="p-4">
-                  Whoops, this feature hasn't been built yet. Come back later or{" "}
+                  Whoops, this feature hasn&apos;t been built yet. Come back
+                  later or{" "}
                   <Link
                     href="https://dub.sh/framely"
                     className="text-blue-500 hover:underline"
