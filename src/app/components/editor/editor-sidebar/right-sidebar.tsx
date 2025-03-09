@@ -52,7 +52,7 @@ const RightSidebar = () => {
                 <SidebarGroupLabel className="px-4 py-2">
                   Settings
                 </SidebarGroupLabel>
-                <SidebarGroupContent className="px-2">
+                <SidebarGroupContent className="px-2 max-h-[calc(100vh-160px)] overflow-y-auto">
                   <SettingsTab />
                 </SidebarGroupContent>
               </TabsContent>

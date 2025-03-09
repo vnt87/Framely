@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import TabList from "./tabs/index";
 import { useState } from "react";
+import LayersTab from "./tabs/layers-tab";
 
 const LeftSidebar = () => {
   const { state } = useEditor();
@@ -64,14 +65,14 @@ const LeftSidebar = () => {
                   />
                 </SidebarGroupAction>
                 {/* max height is (screen height - navbar and sidebar header height) */}
-                <SidebarGroupContent className="p-0 max-h-[calc(100vh-80px)] overflow-y-auto">
+                <SidebarGroupContent className="p-0 max-h-[calc(100vh-95px)] overflow-y-auto">
                   <ComponentsTab />
                 </SidebarGroupContent>
               </TabsContent>
               <TabsContent value="layers">
                 <SidebarGroupLabel>Layers</SidebarGroupLabel>
-                <SidebarGroupContent>
-                  {/* TODO: Implement Layers Tab */}
+                <SidebarGroupContent className="p-0 max-h-[calc(100vh-95px)] overflow-y-auto">
+                  <LayersTab />
                 </SidebarGroupContent>
               </TabsContent>
             </SidebarGroup>
