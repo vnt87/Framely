@@ -17,7 +17,7 @@ export type ElementTypes =
   | "__body"
   | null;
 
-export type CategoryTypes = "Container" | "Text" | "Link" | null;
+export type CategoryTypes = "Container" | "Text" | "Link" | "Basic" | null;
 
 export const defaultStyles: React.CSSProperties = {
   backgroundPosition: "center",
@@ -27,4 +27,8 @@ export const defaultStyles: React.CSSProperties = {
   opacity: "100%",
 };
 
-export const categoriesWithCustomSettings: CategoryTypes[] = ["Text", "Link"];
+export const categoriesWithCustomSettings: CategoryTypes[] = [
+  "Text",
+  "Link",
+  "Basic",
+];

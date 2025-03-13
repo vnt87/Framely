@@ -8,6 +8,8 @@ import {
   Heading4,
   Heading5,
   Heading6,
+  Image,
+  Link,
   LucideIcon,
   Pilcrow,
   SquareDashed,
@@ -97,5 +99,19 @@ export const elements: {
     group: "layout",
     category: "Container",
     icon: Columns3,
+  },
+  {
+    label: "Image",
+    id: "image",
+    group: "element",
+    category: "Basic",
+    icon: Image,
+  },
+  {
+    label: "Link",
+    id: "link",
+    group: "element",
+    category: "Basic",
+    icon: Link,
   },
 ];

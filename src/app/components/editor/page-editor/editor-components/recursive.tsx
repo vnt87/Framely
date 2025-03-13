@@ -1,6 +1,7 @@
 import { EditorElement } from "@/app/providers/editor-provider";
 import TextComponent from "./text";
 import Container from "./container";
+import ImageElement from "./image";
 
 type Props = {
   element: EditorElement;
@@ -16,6 +17,8 @@ function Recursive({ element }: Props) {
       return <Container element={element} />;
     case "3Col":
       return <Container element={element} />;
+    case "image":
+      return <ImageElement element={element} />;
   }
 
   switch (element.category) {

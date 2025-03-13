@@ -12,7 +12,15 @@ export type EditorElement = {
   name: string;
   type: ElementTypes;
   category: CategoryTypes;
-  content: EditorElement[] | { href?: string; innerText?: string };
+  content:
+    | EditorElement[]
+    | {
+        href?: string;
+        innerText?: string;
+        imageUrl?: string;
+        altText?: string;
+        destinationUrl?: string;
+      };
 };
 
 export type Editor = {
@@ -73,11 +81,11 @@ const initialState: EditorState = {
 
 const addElement = (
   editorArray: EditorElement[],
-  action: EditorAction
+  action: EditorAction,
 ): EditorElement[] => {
   if (action.type !== "ADD_ELEMENT") {
     throw Error(
-      "Wrong action type received to add an element to the editor state."
+      "Wrong action type received to add an element to the editor state.",
     );
   }
 
@@ -99,7 +107,7 @@ const addElement = (
 
 const updateElement = (
   editorArray: EditorElement[],
-  action: EditorAction
+  action: EditorAction,
 ): EditorElement[] => {
   if (action.type !== "UPDATE_ELEMENT") {
     throw Error("Wrong action type received to update an elements state.");
@@ -123,7 +131,7 @@ const updateElement = (
 
 const deleteElement = (
   editorArray: EditorElement[],
-  action: EditorAction
+  action: EditorAction,
 ): EditorElement[] => {
   if (action.type !== "DELETE_ELEMENT") {
     throw Error("Wrong action type received to delete an element.");
@@ -141,7 +149,7 @@ const deleteElement = (
 
 const editorReducer = (
   state: EditorState = initialState,
-  action: EditorAction
+  action: EditorAction,
 ): EditorState => {
   switch (action.type) {
     case "ADD_ELEMENT":
@@ -207,7 +215,7 @@ const editorReducer = (
     case "DELETE_ELEMENT":
       const updatedElementsAfterDelete = deleteElement(
         state.editor.elements,
-        action
+        action,
       );
 
       const updatedEditorStateAfterDelete = {

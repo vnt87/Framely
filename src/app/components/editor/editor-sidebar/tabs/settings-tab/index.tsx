@@ -94,11 +94,15 @@ const SettingsTab = () => {
         className="px-2 py-0"
         hidden={
           !categoriesWithCustomSettings.includes(
-            state.editor.selectedElement.category
+            state.editor.selectedElement.category,
           )
         }
       >
-        <AccordionTrigger className="!no-underline">Custom</AccordionTrigger>
+        <AccordionTrigger className="!no-underline capitalize">
+          {state.editor.selectedElement.category === "Text"
+            ? "Text"
+            : state.editor.selectedElement.type}
+        </AccordionTrigger>
         <AccordionContent>
           {(() => {
             if (Array.isArray(state.editor.selectedElement.content))
@@ -129,6 +133,38 @@ const SettingsTab = () => {
                     />
                   </div>
                 );
+              case "Basic":
+                switch (state.editor.selectedElement.type) {
+                  case "image":
+                    return (
+                      <div className="grid grid-rows-2 gap-2">
+                        <div className="flex flex-col gap-2">
+                          <p className="text-muted-foreground">Image Url</p>
+                          <Input
+                            id="imageUrl"
+                            placeholder="Enter Url..."
+                            onChange={handleCustomValuesChange}
+                            value={
+                              state.editor.selectedElement.content.imageUrl
+                            }
+                          />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-muted-foreground">Alt Text</p>
+                          <Input
+                            id="altText"
+                            placeholder="Enter alt text..."
+                            onChange={handleCustomValuesChange}
+                            value={state.editor.selectedElement.content.altText}
+                          />
+                        </div>
+                      </div>
+                    );
+                  default:
+                    return null;
+                }
+              default:
+                return null;
             }
           })()}
         </AccordionContent>

@@ -21,7 +21,7 @@ function Container({ element }: Props) {
     e.stopPropagation();
     setIsDraggingOver(false);
     const componentType = e.dataTransfer.getData(
-      "componentType"
+      "componentType",
     ) as ElementTypes;
     switch (componentType) {
       case "h1":
@@ -47,14 +47,14 @@ function Container({ element }: Props) {
                   componentType === "h1"
                     ? "2.5rem"
                     : componentType === "h2"
-                    ? "2rem"
-                    : componentType === "h3"
-                    ? "1.75rem"
-                    : componentType === "h4"
-                    ? "1.5rem"
-                    : componentType === "h5"
-                    ? "1.25rem"
-                    : "1rem",
+                      ? "2rem"
+                      : componentType === "h3"
+                        ? "1.75rem"
+                        : componentType === "h4"
+                          ? "1.5rem"
+                          : componentType === "h5"
+                            ? "1.25rem"
+                            : "1rem",
                 fontWeight:
                   componentType === "h1" || componentType === "h2"
                     ? "700"
@@ -111,6 +111,25 @@ function Container({ element }: Props) {
               },
               type: componentType,
               category: "Text",
+            },
+          },
+        });
+        break;
+      case "image":
+        dispatch({
+          type: "ADD_ELEMENT",
+          payload: {
+            containerId: id,
+            elementDetails: {
+              content: {
+                imageUrl: undefined,
+                altText: undefined,
+              },
+              id: createId(),
+              name: "Image",
+              styles: {},
+              type: componentType,
+              category: "Basic",
             },
           },
         });
@@ -291,7 +310,7 @@ function Container({ element }: Props) {
           "absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg hidden cursor-default",
           {
             block: isSelected && !state.editor.liveMode,
-          }
+          },
         )}
       >
         {name}
