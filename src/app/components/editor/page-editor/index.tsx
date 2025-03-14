@@ -56,9 +56,9 @@ function PageEditor({ pageId, liveMode }: Props) {
       className={clsx(
         "use-animation-zoom-in h-full overflow-scroll bg-muted transition-all rounded-none py-12 px-20 w-full flex justify-center relative max-h-[calc(100vh-65px)]",
         {
-          "!p-0 !m-0":
+          "!p-0 !m-0 min-w-screen min-h-screen":
             state.editor.previewMode === true || state.editor.liveMode === true,
-        }
+        },
       )}
       onClick={handleClick}
     >

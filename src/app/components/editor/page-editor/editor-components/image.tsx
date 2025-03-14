@@ -23,7 +23,7 @@ function ImageElement({ element }: Props) {
   const hasCustomSize = element.styles?.width || element.styles?.height;
 
   return (
-    <ElementWrapper element={element}>
+    <ElementWrapper element={element} className="!w-fit !h-fit">
       <div style={{ width, height }} className="min-w-[250px]">
         <AspectRatio
           ratio={16 / 9}

@@ -8,9 +8,10 @@ import React from "react";
 type Props = {
   element: EditorElement;
   children: React.ReactNode;
+  className?: string;
 };
 
-function ElementWrapper({ element, children }: Props) {
+function ElementWrapper({ element, children, className }: Props) {
   const { state, dispatch } = useEditor();
   const isSelected = state.editor.selectedElement.id === element.id;
 
@@ -25,14 +26,15 @@ function ElementWrapper({ element, children }: Props) {
       payload: { elementDetails: element },
     });
   };
+  console.log(element.styles.width);
 
   return (
     <div
       style={{
-        width: element.styles.width || "auto",
-        height: element.styles.height || "auto",
+        width: element.styles.width || "",
+        height: element.styles.height || "",
       }}
-      className={clsx("relative p-0", {
+      className={clsx(className, "relative p-0", {
         "!border-blue-500 !border-2":
           isSelected &&
           !state.editor.liveMode &&
@@ -49,7 +51,7 @@ function ElementWrapper({ element, children }: Props) {
       {isSelected && !state.editor.liveMode && (
         <Badge
           className={clsx(
-            "absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg"
+            "absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg",
           )}
           style={defaultStyles}
         >
