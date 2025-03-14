@@ -103,7 +103,7 @@ const SettingsTab = () => {
             ? "Text"
             : state.editor.selectedElement.type}
         </AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent className="px-1">
           {(() => {
             if (Array.isArray(state.editor.selectedElement.content))
               return null;
