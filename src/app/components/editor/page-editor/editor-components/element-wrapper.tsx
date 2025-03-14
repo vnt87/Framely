@@ -26,13 +26,12 @@ function ElementWrapper({ element, children, className }: Props) {
       payload: { elementDetails: element },
     });
   };
-  console.log(element.styles.width);
 
   return (
     <div
       style={{
-        width: element.styles.width || "",
-        height: element.styles.height || "",
+        width: element.styles.width || "auto",
+        height: element.styles.height || "auto",
       }}
       className={clsx(className, "relative p-0", {
         "!border-blue-500 !border-2":

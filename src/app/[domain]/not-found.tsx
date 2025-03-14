@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { getLink } from "@/lib/getLink";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,14 +20,7 @@ export default async function NotFound() {
           Oops! You found a page that doesnt exist (yet)!
         </p>
         <Button asChild>
-          <Link
-            href={
-              `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}` ||
-              "http://localhost:3000"
-            }
-          >
-            Dashboard
-          </Link>
+          <Link href={getLink({})}>Dashboard</Link>
         </Button>
       </div>
     </div>

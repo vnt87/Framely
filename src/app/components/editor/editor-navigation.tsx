@@ -21,6 +21,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FocusEventHandler, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { getLink } from "@/lib/getLink";
 
 type Props = {
   pageDetails: Page;
@@ -31,13 +33,16 @@ const EditorNavigation = ({ pageDetails }: Props) => {
   const { state, dispatch } = useEditor();
   const [titleLoading, setTitleLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     dispatch({ type: "SET_PAGE_ID", payload: { pageId: pageDetails.id } });
   }, [pageDetails, dispatch]);
 
+  if (isMobile) return null;
+
   const handleOnBlurTitleChange: FocusEventHandler<HTMLInputElement> = async (
-    event
+    event,
   ) => {
     if (event.target.value && event.target.value !== pageDetails.title) {
       setTitleLoading(true);
@@ -118,7 +123,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
       }`}
     >
       <aside className="flex items-center gap-4 max-w-[260px] w-[300px]">
-        <Link href={`https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}>
+        <Link href={getLink({})}>
           <Button variant={"ghost"} size={"icon"}>
             <ChevronLeft />
           </Button>
@@ -136,7 +141,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
             />
           </div>
           <Link
-            href={`https://${pageDetails.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}
+            href={getLink({ subdomain: pageDetails.subdomain })}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-sm gap-2 text-muted-foreground w-fit group"

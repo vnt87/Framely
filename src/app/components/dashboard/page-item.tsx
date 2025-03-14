@@ -14,6 +14,7 @@ import { formatTimeAgo } from "@/lib/utils";
 import { Page } from "@prisma/client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
+import { getLink } from "@/lib/getLink";
 
 function PageItem({ page }: { page: Page }) {
   const router = useRouter();
@@ -34,7 +35,7 @@ function PageItem({ page }: { page: Page }) {
       <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 group">
         <div className="flex-1">
           <Link
-            href={`http://editor.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}/${page.id}`}
+            href={getLink({ subdomain: "editor", pathName: page.id })}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
@@ -73,7 +74,7 @@ function PageItem({ page }: { page: Page }) {
           <div className="flex items-center gap-2 group hover:cursor-pointer">
             <Globe className="flex-shrink-0 w-4 h-4 mt-1 group-hover:text-primary" />
             <Link
-              href={`https://${page.subdomain}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`}
+              href={getLink({ subdomain: page.subdomain })}
               target="_blank"
               rel="noopener noreferrer"
               className="group-hover:text-primary"

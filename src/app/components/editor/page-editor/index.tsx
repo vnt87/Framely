@@ -8,11 +8,15 @@ import { EyeOff } from "lucide-react";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import Recursive from "./editor-components/recursive";
+import { useIsMobile } from "@/hooks/use-mobile";
+import Link from "next/link";
+import { getLink } from "@/lib/getLink";
 
 type Props = { pageId: string; liveMode?: boolean };
 
 function PageEditor({ pageId, liveMode }: Props) {
   const { state, dispatch } = useEditor();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (liveMode) {
@@ -42,6 +46,18 @@ function PageEditor({ pageId, liveMode }: Props) {
     fetchData();
   }, [pageId, dispatch, liveMode]);
 
+  if (isMobile) {
+    return (
+      <div className="flex flex-col gap-4 absolute z-[101] top-0 w-screen h-screen items-center justify-center">
+        <h1 className="text-2xl text-center">
+          Whoops! The Framely page editor is only available on larger devices.
+        </h1>
+        <Button asChild variant="default">
+          <Link href={getLink({})}>Dashboard</Link>
+        </Button>
+      </div>
+    );
+  }
   const handleClick = () => {
     dispatch({ type: "CHANGE_SELECTED_ELEMENT", payload: {} });
   };
