@@ -273,7 +273,7 @@ function Container({ element }: Props) {
         "max-w-full w-full":
           (type === "container" || type === "2Col") && !styles?.width,
         "h-fit": type === "container" && !styles?.height,
-        "h-full overflow-scroll": type === "__body",
+        "h-full": type === "__body",
         "!h-screen !m-0 !rounded-none":
           type === "__body" && state.editor.liveMode,
         "flex flex-col md:!flex-row": type === "2Col",

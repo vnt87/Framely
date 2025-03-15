@@ -70,25 +70,33 @@ function PageEditor({ pageId, liveMode }: Props) {
   };
 
   return (
-    <div
-      className={clsx(
-        "use-animation-zoom-in h-full overflow-scroll bg-muted transition-all rounded-none py-12 px-20 w-full flex justify-center relative max-h-[calc(100vh-65px)]",
-        {
-          "!p-0 !m-0 min-w-screen min-h-screen":
-            state.editor.previewMode === true || state.editor.liveMode === true,
-        },
-      )}
-      onClick={handleClick}
-    >
-      {state.editor.previewMode && state.editor.liveMode && (
-        <Button variant="ghost" size="icon" onClick={handleUnPreview}>
-          <EyeOff />
-        </Button>
-      )}
-      {Array.isArray(state.editor.elements) &&
-        state.editor.elements.map((childElement) => (
-          <Recursive key={childElement.id} element={childElement} />
-        ))}
+    <div className="max-h-[calc(100vh-65px)] h-full overflow-y-scroll bg-muted">
+      <div
+        className={clsx(
+          "use-animation-zoom-in h-full bg-muted transition-all rounded-none py-12 px-20 w-full flex justify-center relative",
+          {
+            "!p-0 !m-0 min-w-screen min-h-screen":
+              state.editor.previewMode === true ||
+              state.editor.liveMode === true,
+          },
+        )}
+        onClick={handleClick}
+      >
+        {state.editor.previewMode && state.editor.liveMode && (
+          <Button
+            variant="default"
+            size="icon"
+            onClick={handleUnPreview}
+            className={`absolute top-5 right-5 transition-opacity w-12 h-12 rounded-lg z-[500] shadow-lg flex items-center justify-center ${!state.editor.previewMode ? "opacity-0" : "opacity-100"}`}
+          >
+            <EyeOff />
+          </Button>
+        )}
+        {Array.isArray(state.editor.elements) &&
+          state.editor.elements.map((childElement) => (
+            <Recursive key={childElement.id} element={childElement} />
+          ))}
+      </div>
     </div>
   );
 }
