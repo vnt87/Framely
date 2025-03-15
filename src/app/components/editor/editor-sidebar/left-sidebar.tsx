@@ -31,7 +31,7 @@ const LeftSidebar = () => {
 
   return (
     <SidebarProvider open={open} onOpenChange={setOpen}>
-      <Sidebar side="left" className="mt-[65px] w-[300px] ">
+      <Sidebar side="left" className="mt-[65px] ">
         <SidebarContent>
           <Tabs defaultValue="components" className="flex w-full">
             <SidebarGroup className="flex-shrink-0 w-16">

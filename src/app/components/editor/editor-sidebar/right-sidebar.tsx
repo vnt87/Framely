@@ -23,7 +23,7 @@ const RightSidebar = () => {
     <SidebarProvider open={state.editor.selectedElement.type !== null}>
       <Sidebar
         side="right"
-        className={`mt-[65px] w-[300px] ${
+        className={`mt-[65px] ${
           state.editor.selectedElement.type === null ? "translate-x-full" : ""
         }`}
       >

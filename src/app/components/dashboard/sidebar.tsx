@@ -9,6 +9,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -30,6 +31,8 @@ import {
   LogOut,
   MoveUpRight,
   Settings,
+  SquareDashedMousePointer,
+  TextCursor,
 } from "lucide-react";
 
 const items = [
@@ -49,7 +52,18 @@ const externalLinks = [
 
 const AppSidebar = () => {
   return (
-    <Sidebar>
+    <Sidebar className="w-[16rem]">
+      <SidebarHeader>
+        <SidebarGroup className="flex flex-row space-x-2">
+          <div className="bg-gradient-to-tr from-red-400 to-orange-400 text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+            <SquareDashedMousePointer className="size-6" />
+          </div>
+          <div className="grid flex-1 text-left text-sm leading-tight">
+            <span className="truncate font-semibold">Framely</span>
+            <span className="truncate text-xs">Dashboard</span>
+          </div>
+        </SidebarGroup>
+      </SidebarHeader>
       <SidebarContent className="justify-between px-2">
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>

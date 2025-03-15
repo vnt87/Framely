@@ -70,7 +70,9 @@ function PageEditor({ pageId, liveMode }: Props) {
   };
 
   return (
-    <div className="max-h-[calc(100vh-65px)] h-full overflow-y-scroll bg-muted">
+    <div
+      className={`h-full overflow-y-scroll max-w-full overflow-x-clip bg-muted ${state.editor.previewMode === false && state.editor.liveMode === false && "max-h-[calc(100vh-65px)]"}`}
+    >
       <div
         className={clsx(
           "use-animation-zoom-in h-full bg-muted transition-all rounded-none py-12 px-20 w-full flex justify-center relative",
@@ -82,16 +84,18 @@ function PageEditor({ pageId, liveMode }: Props) {
         )}
         onClick={handleClick}
       >
-        {state.editor.previewMode && state.editor.liveMode && (
-          <Button
-            variant="default"
-            size="icon"
-            onClick={handleUnPreview}
-            className={`absolute top-5 right-5 transition-opacity w-12 h-12 rounded-lg z-[500] shadow-lg flex items-center justify-center ${!state.editor.previewMode ? "opacity-0" : "opacity-100"}`}
-          >
-            <EyeOff />
-          </Button>
-        )}
+        <Button
+          variant="default"
+          size="icon"
+          onClick={handleUnPreview}
+          className={`absolute top-5 right-5 w-12 h-12 rounded-lg z-[500] shadow-lg flex items-center justify-center transition-all duration-300 transform ${
+            state.editor.previewMode
+              ? "translate-x-0 opacity-100"
+              : "translate-x-20 opacity-0"
+          }`}
+        >
+          <EyeOff />
+        </Button>
         {Array.isArray(state.editor.elements) &&
           state.editor.elements.map((childElement) => (
             <Recursive key={childElement.id} element={childElement} />
