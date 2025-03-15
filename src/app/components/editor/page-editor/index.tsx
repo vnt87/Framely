@@ -4,7 +4,7 @@ import { getPageDetails } from "@/lib/actions/page";
 import { useEditor } from "@/app/providers/editor-provider";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
-import { EyeOff } from "lucide-react";
+import { ArrowLeft, EyeOff } from "lucide-react";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import Recursive from "./editor-components/recursive";
@@ -46,14 +46,16 @@ function PageEditor({ pageId, liveMode }: Props) {
     fetchData();
   }, [pageId, dispatch, liveMode]);
 
-  if (isMobile) {
+  if (isMobile && !liveMode && !state.editor.previewMode) {
     return (
-      <div className="flex flex-col gap-4 absolute z-[101] top-0 w-screen h-screen items-center justify-center">
+      <div className="flex flex-col gap-4 px-4 absolute z-[101] top-0 w-screen h-screen items-center justify-center">
         <h1 className="text-2xl text-center">
-          Whoops! The Framely page editor is only available on larger devices.
+          Whoops! The Framely page editor is only available on larger device.
         </h1>
-        <Button asChild variant="default">
-          <Link href={getLink({})}>Dashboard</Link>
+        <Button asChild variant="link" className="group">
+          <Link href={getLink({})}>
+            <ArrowLeft /> Go Back
+          </Link>
         </Button>
       </div>
     );

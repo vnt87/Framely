@@ -70,7 +70,7 @@ function PageItem({ page }: { page: Page }) {
         </DropdownMenu>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center text-sm gap-x-6 gap-y-0 text-muted-foreground">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center text-sm gap-x-6 gap-y-2 sm:gap-y-0 text-muted-foreground">
           <div className="flex items-center gap-2 group hover:cursor-pointer">
             <Globe className="flex-shrink-0 w-4 h-4 mt-1 group-hover:text-primary" />
             <Link
