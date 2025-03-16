@@ -22,6 +22,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import {
   ChartLine,
   Github,
@@ -149,6 +150,7 @@ const AppSidebar = () => {
               <div className="flex items-center justify-between w-full">
                 <UserButton
                   appearance={{
+                    baseTheme: theme === "dark" ? dark : undefined,
                     elements: {
                       userButtonBox:
                         "flex-row-reverse hover:bg-muted rounded-lg p-2",
