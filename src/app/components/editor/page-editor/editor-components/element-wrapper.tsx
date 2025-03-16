@@ -50,7 +50,7 @@ function ElementWrapper({ element, children, className }: Props) {
       {isSelected && !state.editor.liveMode && (
         <Badge
           className={clsx(
-            "absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg",
+            "absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg bg-background text-foreground",
           )}
           style={defaultStyles}
         >
@@ -63,9 +63,9 @@ function ElementWrapper({ element, children, className }: Props) {
       {isSelected &&
         !state.editor.liveMode &&
         state.editor.selectedElement.type !== "__body" && (
-          <div className="absolute bg-primary px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg !text-white">
+          <div className="absolute bg-background px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg !text-white">
             <Trash
-              className="cursor-pointer"
+              className="cursor-pointer text-foreground"
               size={16}
               onClick={handleDeleteElement}
             />

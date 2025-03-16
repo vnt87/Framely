@@ -50,7 +50,7 @@ function PageEditor({ pageId, liveMode }: Props) {
     return (
       <div className="flex flex-col gap-4 px-4 absolute z-[101] top-0 w-screen h-screen items-center justify-center">
         <h1 className="text-2xl text-center">
-          Whoops! The Framely page editor is only available on larger device.
+          Whoops! The Framely page editor is only available on larger devices.
         </h1>
         <Button asChild variant="link" className="group">
           <Link href={getLink({})}>

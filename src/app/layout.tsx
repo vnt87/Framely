@@ -30,7 +30,7 @@ export default function RootLayout({
         <body suppressHydrationWarning>
           <ThemeProvider
             attribute="class"
-            defaultTheme="light"
+            defaultTheme="system"
             disableTransitionOnChange
           >
             {children}

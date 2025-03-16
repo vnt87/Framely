@@ -13,7 +13,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProvider,
 } from "@/components/ui/sidebar";
 import {
   ClerkLoading,
@@ -28,12 +27,14 @@ import {
   Github,
   Globe,
   LayoutDashboard,
+  Lightbulb,
   LogOut,
+  Moon,
   MoveUpRight,
   Settings,
   SquareDashedMousePointer,
-  TextCursor,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },
@@ -51,16 +52,40 @@ const externalLinks = [
 ];
 
 const AppSidebar = () => {
+  const { theme, setTheme } = useTheme();
   return (
     <Sidebar className="w-[16rem]">
       <SidebarHeader>
-        <SidebarGroup className="flex flex-row space-x-2">
-          <div className="bg-gradient-to-tr from-red-400 to-orange-400 text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-            <SquareDashedMousePointer className="size-6" />
-          </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">Framely</span>
-            <span className="truncate text-xs">Dashboard</span>
+        <SidebarGroup>
+          <div className="flex justify-between">
+            <div className="flex flex-row space-x-2">
+              <div className="bg-gradient-to-tr from-red-400 to-orange-400 text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                <SquareDashedMousePointer className="size-6" />
+              </div>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">Framely</span>
+                <span className="truncate text-xs">Dashboard</span>
+              </div>
+            </div>
+            <div>
+              {theme === "light" ? (
+                <Button
+                  onClick={() => setTheme("dark")}
+                  variant="outline"
+                  size="icon"
+                >
+                  <Moon />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => setTheme("light")}
+                  variant="secondary"
+                  size="icon"
+                >
+                  <Lightbulb />
+                </Button>
+              )}
+            </div>
           </div>
         </SidebarGroup>
       </SidebarHeader>
