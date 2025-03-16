@@ -16,7 +16,7 @@ export default async function NotFound() {
         height={400}
       />
       <div className="flex flex-col items-center gap-y-4">
-        <p className="text-lg text-stone-500">
+        <p className="text-lg">
           Oops! You found a page that doesnt exist (yet)!
         </p>
         <Button asChild>

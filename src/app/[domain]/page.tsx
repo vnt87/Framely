@@ -21,7 +21,7 @@ async function Page({ params }: { params: Promise<{ domain: string }> }) {
   if (response.private) {
     return (
       <div className="flex items-center justify-center w-screen h-screen">
-        <h1 className="text-xl font-medium text-gray-900">{response.msg}</h1>
+        <h1 className="text-xl font-medium">{response.msg}</h1>
       </div>
     );
   }
