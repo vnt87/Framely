@@ -31,7 +31,7 @@ export async function createPage({ title, subdomain }: PageProps) {
   } catch (error) {
     return {
       success: false,
-      msg: error instanceof Error ? error.message : "An unknown error occured",
+      msg: error instanceof Error ? error.message : "An unknown error occurred",
     };
   }
 }
@@ -86,7 +86,7 @@ export async function deletePage(pageId: string) {
   } catch (error) {
     return {
       success: false,
-      msg: error instanceof Error ? error.message : "An unknown error occured",
+      msg: error instanceof Error ? error.message : "An unknown error occurred",
     };
   }
 }
@@ -101,7 +101,7 @@ export async function getPageDetails(pageId: string) {
   } catch (error) {
     return {
       success: false,
-      msg: error instanceof Error ? error.message : "An unknown error occured",
+      msg: error instanceof Error ? error.message : "An unknown error occurred",
     };
   }
 }
@@ -145,7 +145,7 @@ export const getPageByDomain = async (subdomainName: string) => {
   } catch (error) {
     return {
       success: false,
-      msg: error instanceof Error ? error.message : "An unknown error occured",
+      msg: error instanceof Error ? error.message : "An unknown error occurred",
     };
   }
 };
