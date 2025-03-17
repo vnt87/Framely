@@ -147,17 +147,19 @@ const AppSidebar = () => {
               </div>
             </ClerkLoading>
             <SignedIn>
-              <div className="flex items-center justify-between w-full">
-                <UserButton
-                  appearance={{
-                    baseTheme: theme === "dark" ? dark : undefined,
-                    elements: {
-                      userButtonBox:
-                        "flex-row-reverse hover:bg-muted rounded-lg p-2",
-                    },
-                  }}
-                  showName
-                />
+              <div className="flex items-center justify-between w-full space-x-2">
+                <div className="max-w-full truncate pr-2 rounded-lg">
+                  <UserButton
+                    appearance={{
+                      baseTheme: theme === "dark" ? dark : undefined,
+                      elements: {
+                        userButtonBox:
+                          "flex-row-reverse hover:bg-muted rounded-lg p-2",
+                      },
+                    }}
+                    showName
+                  />
+                </div>
                 <SignOutButton>
                   <Button variant={"ghost"} className="px-2 py-6">
                     <LogOut />
