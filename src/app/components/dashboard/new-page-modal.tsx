@@ -30,6 +30,7 @@ import {
 import * as z from "zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { usePlausible } from "next-plausible";
 
 type FormData = z.infer<typeof createPageSchema>;
 
@@ -37,6 +38,8 @@ export default function NewPageModal() {
   const [open, setOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+
+  const plausible = usePlausible();
 
   const form = useForm<FormData>({
     resolver: zodResolver(createPageSchema),
@@ -57,6 +60,8 @@ export default function NewPageModal() {
           description: data.title + " has been created.",
         });
         setOpen(false);
+
+        plausible("create-site");
         router.refresh();
       }
     } catch (error) {
