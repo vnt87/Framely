@@ -119,6 +119,7 @@ const AppSidebar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="justify-between w-full"
+                      data-umami-event="social-GitHub"
                     >
                       <div className="flex items-center space-x-3">
                         <item.icon className="w-4 h-4" />

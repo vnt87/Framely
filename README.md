@@ -59,6 +59,7 @@ This project is built with the following tools and services:
 - **Shadcn**: UI component library.
 - **Prisma & MySQL**: Database ORM and relational database.
 - **Clerk Authentication**: Secure and flexible user authentication service.
+- **Umami Analytics**: Simple, fast, privacy-focused alternative to Google Analytics.
 
 ---
 
