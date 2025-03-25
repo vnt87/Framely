@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { Site } from "@prisma/client";
+import { Page } from "@prisma/client";
 import { revalidateTag, unstable_cache } from "next/cache";
 
 type SiteProps = {
@@ -15,7 +15,7 @@ export async function createSite({ title, subdomain }: SiteProps) {
 
   if (!userId) return { success: false, msg: "User not signed in" };
 
-  const existingSite = await db.site.findFirst({
+  const existingSite = await db.page.findFirst({
     where: { subdomain: subdomain },
   });
 
@@ -24,7 +24,7 @@ export async function createSite({ title, subdomain }: SiteProps) {
   }
 
   try {
-    const site = await db.site.create({
+    const site = await db.page.create({
       data: { userId: userId, title: title, subdomain: subdomain },
     });
     return { success: true, site: site };
@@ -36,7 +36,7 @@ export async function createSite({ title, subdomain }: SiteProps) {
   }
 }
 
-type UpsertProps = Partial<Site>;
+type UpsertProps = Partial<Page>;
 
 export async function upsertSite({
   id,
@@ -50,7 +50,7 @@ export async function upsertSite({
 
   if (!userId) return { success: false, msg: "User not signed in" };
 
-  const site = await db.site.update({
+  const site = await db.page.update({
     where: { id: id, userId: userId },
     data: {
       id: id,
@@ -73,7 +73,7 @@ export async function deleteSite(siteId: string) {
   if (!userId) return { success: false, msg: "User not signed in" };
 
   try {
-    const response = await db.site.delete({
+    const response = await db.page.delete({
       where: {
         id: siteId,
         userId: userId,
@@ -93,7 +93,7 @@ export async function deleteSite(siteId: string) {
 
 export async function getSiteDetails(siteId: string) {
   try {
-    const res = await db.site.findUnique({ where: { id: siteId } });
+    const res = await db.page.findUnique({ where: { id: siteId } });
     if (!res) {
       throw new Error("Database Error");
     }
@@ -110,7 +110,7 @@ export const getSiteByDomain = async (subdomainName: string) => {
   try {
     const response = await unstable_cache(
       async () => {
-        const response = await db.site.findUnique({
+        const response = await db.page.findUnique({
           where: {
             subdomain: subdomainName,
           },

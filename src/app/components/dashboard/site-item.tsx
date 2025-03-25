@@ -11,12 +11,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Globe, Clock, ExternalLink } from "lucide-react";
 import { formatTimeAgo } from "@/lib/utils";
-import { Site } from "@prisma/client";
+import { Page } from "@prisma/client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { getLink } from "@/lib/getLink";
 
-function PageItem({ site }: { site: Site }) {
+function PageItem({ site }: { site: Page }) {
   const router = useRouter();
 
   const handleDelete = async (siteId: string) => {

@@ -19,7 +19,7 @@ const Page = async ({ params }: Props) => {
   const session = await auth();
 
   const { siteId } = await params;
-  const siteDetails = await db.site.findFirst({
+  const siteDetails = await db.page.findFirst({
     where: {
       id: siteId,
     },

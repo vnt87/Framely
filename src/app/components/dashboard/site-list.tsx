@@ -6,7 +6,7 @@ import PageItem from "./site-item";
 
 async function SiteList() {
   const { userId } = await auth();
-  const sites = await db.site.findMany({
+  const sites = await db.page.findMany({
     where: { userId: userId || "" },
     orderBy: { updatedAt: "desc" },
   });

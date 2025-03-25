@@ -2,7 +2,7 @@
 import { Dispatch, createContext, useContext, useReducer } from "react";
 import { CategoryTypes, ElementTypes } from "../../lib/constants";
 import { EditorAction } from "./editor-actions";
-import { Site } from "@prisma/client";
+import { Page } from "@prisma/client";
 
 export type DeviceTypes = "Desktop" | "Tablet" | "Mobile";
 
@@ -394,7 +394,7 @@ export const EditorContext = createContext<{
   state: EditorState;
   dispatch: Dispatch<EditorAction>;
   siteId: string;
-  siteDetails: Site | null;
+  siteDetails: Page | null;
 }>({
   state: initialState,
   dispatch: () => undefined,
@@ -405,7 +405,7 @@ export const EditorContext = createContext<{
 type EditorProps = {
   children: React.ReactNode;
   siteId: string;
-  siteDetails: Site;
+  siteDetails: Page;
 };
 
 const EditorProvider = (props: EditorProps) => {

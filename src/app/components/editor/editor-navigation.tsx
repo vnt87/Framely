@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Site } from "@prisma/client";
+import { Page } from "@prisma/client";
 import {
   ArrowUpRightFromSquare,
   ChevronLeft,
@@ -25,7 +25,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { getLink } from "@/lib/getLink";
 
 type Props = {
-  siteDetails: Site;
+  siteDetails: Page;
 };
 
 const EditorNavigation = ({ siteDetails }: Props) => {
