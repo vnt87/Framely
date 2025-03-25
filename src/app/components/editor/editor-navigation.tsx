@@ -1,11 +1,11 @@
 "use client";
-import { upsertPage } from "@/lib/actions/page";
+import { upsertSite } from "@/lib/actions/page";
 import { DeviceTypes, useEditor } from "@/app/providers/editor-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Page } from "@prisma/client";
+import { Site } from "@prisma/client";
 import {
   ArrowUpRightFromSquare,
   ChevronLeft,
@@ -25,10 +25,10 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { getLink } from "@/lib/getLink";
 
 type Props = {
-  pageDetails: Page;
+  siteDetails: Site;
 };
 
-const EditorNavigation = ({ pageDetails }: Props) => {
+const EditorNavigation = ({ siteDetails }: Props) => {
   const router = useRouter();
   const { state, dispatch } = useEditor();
   const [titleLoading, setTitleLoading] = useState(false);
@@ -36,26 +36,26 @@ const EditorNavigation = ({ pageDetails }: Props) => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    dispatch({ type: "SET_PAGE_ID", payload: { pageId: pageDetails.id } });
-  }, [pageDetails, dispatch]);
+    dispatch({ type: "SET_SITE_ID", payload: { siteId: siteDetails.id } });
+  }, [siteDetails, dispatch]);
 
   if (isMobile) return null;
 
   const handleOnBlurTitleChange: FocusEventHandler<HTMLInputElement> = async (
-    event,
+    event
   ) => {
-    if (event.target.value && event.target.value !== pageDetails.title) {
+    if (event.target.value && event.target.value !== siteDetails.title) {
       setTitleLoading(true);
-      const res = await upsertPage({
+      const res = await upsertSite({
         title: event.target.value,
-        id: pageDetails.id,
+        id: siteDetails.id,
       });
 
       if (res.success === false) {
         toast("Error", { description: res.msg });
-      } else if (res.page) {
+      } else if (res.site) {
         toast("Success", {
-          description: `Name of this page changed to '${res.page.title}'`,
+          description: `Name of this site changed to '${res.site.title}'`,
         });
         router.refresh();
       }
@@ -82,9 +82,9 @@ const EditorNavigation = ({ pageDetails }: Props) => {
       payload: { value: checked },
     });
 
-    const res = await upsertPage({
+    const res = await upsertSite({
       visible: checked,
-      id: pageDetails.id,
+      id: siteDetails.id,
     });
 
     if (res.success === false) {
@@ -93,19 +93,19 @@ const EditorNavigation = ({ pageDetails }: Props) => {
         type: "TOGGLE_VISIBILITY_STATUS",
         payload: { value: !checked },
       });
-    } else if (res.page) {
+    } else if (res.site) {
       toast("Success", {
-        description: res.page.visible
-          ? "Your page is now visible to the whole wide world!"
-          : "Your page is only accessible to you now.",
+        description: res.site.visible
+          ? "Your site is now visible to the whole wide world!"
+          : "Your site is only accessible to you now.",
       });
     }
   };
 
   const handleOnSave = async () => {
     setIsSaving(true);
-    const res = await upsertPage({
-      id: pageDetails.id,
+    const res = await upsertSite({
+      id: siteDetails.id,
       content: JSON.stringify(state.editor.elements),
     });
     if (!res.success) {
@@ -131,7 +131,7 @@ const EditorNavigation = ({ pageDetails }: Props) => {
         <div className="flex flex-col w-full">
           <div className="flex items-center">
             <Input
-              defaultValue={pageDetails.title}
+              defaultValue={siteDetails.title}
               className="border-none max-w-[7rem] p-0 h-5 m-0 text-lg"
               onBlur={handleOnBlurTitleChange}
               type="text"
@@ -141,12 +141,12 @@ const EditorNavigation = ({ pageDetails }: Props) => {
             />
           </div>
           <Link
-            href={getLink({ subdomain: pageDetails.subdomain })}
+            href={getLink({ subdomain: siteDetails.subdomain })}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center text-sm gap-2 text-muted-foreground w-fit group"
           >
-            {pageDetails.subdomain}.{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
+            {siteDetails.subdomain}.{process.env.NEXT_PUBLIC_ROOT_DOMAIN}
             <ArrowUpRightFromSquare className="hidden w-4 h-4 group-hover:block" />
           </Link>
         </div>

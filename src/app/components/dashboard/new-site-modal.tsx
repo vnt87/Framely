@@ -14,11 +14,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { createPage } from "@/lib/actions/page";
+import { createSite } from "@/lib/actions/page";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createPageSchema } from "@/lib/validations/page";
+import { createSiteSchema } from "@/lib/validations/page";
 import {
   Form,
   FormControl,
@@ -31,7 +31,7 @@ import * as z from "zod";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-type FormData = z.infer<typeof createPageSchema>;
+type FormData = z.infer<typeof createSiteSchema>;
 
 export default function NewPageModal() {
   const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function NewPageModal() {
   const router = useRouter();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(createPageSchema),
+    resolver: zodResolver(createSiteSchema),
     defaultValues: {
       title: "",
       subdomain: "",
@@ -49,10 +49,10 @@ export default function NewPageModal() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const res = await createPage(data);
+      const res = await createSite(data);
       if (res.success === false) {
         toast.error("Error", { description: res.msg });
-      } else if (res.page) {
+      } else if (res.site) {
         toast.success("Success", {
           description: data.title + " has been created.",
         });
@@ -73,13 +73,13 @@ export default function NewPageModal() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>New Page</Button>
+        <Button>New Site</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Create New Page</DialogTitle>
+          <DialogTitle>Create New Site</DialogTitle>
           <DialogDescription>
-            Enter the details for your new page.
+            Enter the details for your new site.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -131,7 +131,7 @@ export default function NewPageModal() {
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   </>
                 ) : (
-                  "Create Page"
+                  "Create Site"
                 )}
               </Button>
             </div>

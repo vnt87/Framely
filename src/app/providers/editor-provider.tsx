@@ -2,7 +2,7 @@
 import { Dispatch, createContext, useContext, useReducer } from "react";
 import { CategoryTypes, ElementTypes } from "../../lib/constants";
 import { EditorAction } from "./editor-actions";
-import { Page } from "@prisma/client";
+import { Site } from "@prisma/client";
 
 export type DeviceTypes = "Desktop" | "Tablet" | "Mobile";
 
@@ -24,7 +24,7 @@ export type EditorElement = {
 };
 
 export type Editor = {
-  pageId: string;
+  siteId: string;
   liveMode: boolean;
   previewMode: boolean;
   visible: boolean;
@@ -66,7 +66,7 @@ const initialEditorState: EditorState["editor"] = {
   previewMode: false,
   liveMode: false,
   visible: false,
-  pageId: "",
+  siteId: "",
 };
 
 const initialHistoryState: HistoryState = {
@@ -81,11 +81,11 @@ const initialState: EditorState = {
 
 const addElement = (
   editorArray: EditorElement[],
-  action: EditorAction,
+  action: EditorAction
 ): EditorElement[] => {
   if (action.type !== "ADD_ELEMENT") {
     throw Error(
-      "Wrong action type received to add an element to the editor state.",
+      "Wrong action type received to add an element to the editor state."
     );
   }
 
@@ -107,7 +107,7 @@ const addElement = (
 
 const updateElement = (
   editorArray: EditorElement[],
-  action: EditorAction,
+  action: EditorAction
 ): EditorElement[] => {
   if (action.type !== "UPDATE_ELEMENT") {
     throw Error("Wrong action type received to update an elements state.");
@@ -131,7 +131,7 @@ const updateElement = (
 
 const deleteElement = (
   editorArray: EditorElement[],
-  action: EditorAction,
+  action: EditorAction
 ): EditorElement[] => {
   if (action.type !== "DELETE_ELEMENT") {
     throw Error("Wrong action type received to delete an element.");
@@ -149,7 +149,7 @@ const deleteElement = (
 
 const editorReducer = (
   state: EditorState = initialState,
-  action: EditorAction,
+  action: EditorAction
 ): EditorState => {
   switch (action.type) {
     case "ADD_ELEMENT":
@@ -215,7 +215,7 @@ const editorReducer = (
     case "DELETE_ELEMENT":
       const updatedElementsAfterDelete = deleteElement(
         state.editor.elements,
-        action,
+        action
       );
 
       const updatedEditorStateAfterDelete = {
@@ -354,29 +354,29 @@ const editorReducer = (
         },
       };
 
-    case "SET_PAGE_ID":
-      const { pageId } = action.payload;
-      const updatedEditorStateWithPageId = {
+    case "SET_SITE_ID":
+      const { siteId } = action.payload;
+      const updatedEditorStateWithSiteId = {
         ...state.editor,
-        pageId,
+        siteId,
       };
 
-      const updatedHistoryWithPageId = [
+      const updatedHistoryWithSiteId = [
         ...state.history.history.slice(0, state.history.currentIndex + 1),
-        { ...updatedEditorStateWithPageId },
+        { ...updatedEditorStateWithSiteId },
       ];
 
-      const pageIdState = {
+      const siteIdState = {
         ...state,
-        editor: updatedEditorStateWithPageId,
+        editor: updatedEditorStateWithSiteId,
         history: {
           ...state.history,
-          history: updatedHistoryWithPageId,
-          currentIndex: updatedHistoryWithPageId.length - 1,
+          history: updatedHistoryWithSiteId,
+          currentIndex: updatedHistoryWithSiteId.length - 1,
         },
       };
 
-      return pageIdState;
+      return siteIdState;
 
     default:
       return initialState;
@@ -393,19 +393,19 @@ export type EditorContextData = {
 export const EditorContext = createContext<{
   state: EditorState;
   dispatch: Dispatch<EditorAction>;
-  pageId: string;
-  pageDetails: Page | null;
+  siteId: string;
+  siteDetails: Site | null;
 }>({
   state: initialState,
   dispatch: () => undefined,
-  pageId: "",
-  pageDetails: null,
+  siteId: "",
+  siteDetails: null,
 });
 
 type EditorProps = {
   children: React.ReactNode;
-  pageId: string;
-  pageDetails: Page;
+  siteId: string;
+  siteDetails: Site;
 };
 
 const EditorProvider = (props: EditorProps) => {
@@ -416,8 +416,8 @@ const EditorProvider = (props: EditorProps) => {
       value={{
         state,
         dispatch,
-        pageId: props.pageId,
-        pageDetails: props.pageDetails,
+        siteId: props.siteId,
+        siteDetails: props.siteDetails,
       }}
     >
       {props.children}

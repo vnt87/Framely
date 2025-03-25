@@ -50,4 +50,4 @@ export type EditorAction =
       type: "LOAD_DATA";
       payload: { elements: EditorElement[]; withLive: boolean };
     }
-  | { type: "SET_PAGE_ID"; payload: { pageId: string } };
+  | { type: "SET_SITE_ID"; payload: { siteId: string } };

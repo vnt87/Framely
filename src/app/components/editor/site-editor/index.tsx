@@ -1,6 +1,6 @@
 "use client";
 
-import { getPageDetails } from "@/lib/actions/page";
+import { getSiteDetails } from "@/lib/actions/page";
 import { useEditor } from "@/app/providers/editor-provider";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
@@ -12,9 +12,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
 import { getLink } from "@/lib/getLink";
 
-type Props = { pageId: string; liveMode?: boolean };
+type Props = { siteId: string; liveMode?: boolean };
 
-function PageEditor({ pageId, liveMode }: Props) {
+function SiteEditor({ siteId, liveMode }: Props) {
   const { state, dispatch } = useEditor();
   const isMobile = useIsMobile();
 
@@ -29,7 +29,7 @@ function PageEditor({ pageId, liveMode }: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getPageDetails(pageId);
+      const response = await getSiteDetails(siteId);
       if (response.success === false) {
         toast.error("Error", { description: response.msg as string });
         return;
@@ -44,13 +44,14 @@ function PageEditor({ pageId, liveMode }: Props) {
       });
     };
     fetchData();
-  }, [pageId, dispatch, liveMode]);
+  }, [siteId, dispatch, liveMode]);
 
   if (isMobile && !liveMode && !state.editor.previewMode) {
     return (
       <div className="flex flex-col gap-4 px-4 absolute z-[101] top-0 w-screen h-screen items-center justify-center">
         <h1 className="text-2xl text-center">
-          Whoops! The Framely page editor is only available on larger devices.
+          Whoops! The Framely Website Editor is only available on larger
+          devices.
         </h1>
         <Button asChild variant="link" className="group">
           <Link href={getLink({})}>
@@ -80,7 +81,7 @@ function PageEditor({ pageId, liveMode }: Props) {
             "!p-0 !m-0 min-w-screen min-h-screen":
               state.editor.previewMode === true ||
               state.editor.liveMode === true,
-          },
+          }
         )}
         onClick={handleClick}
       >
@@ -105,4 +106,4 @@ function PageEditor({ pageId, liveMode }: Props) {
   );
 }
 
-export default PageEditor;
+export default SiteEditor;

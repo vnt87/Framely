@@ -3,7 +3,7 @@ import EditorProvider from "@/app/providers/editor-provider";
 import React from "react";
 import EditorNavigation from "../../components/editor/editor-navigation";
 import { auth } from "@clerk/nextjs/server";
-import PageEditor from "@/app/components/editor/page-editor";
+import SiteEditor from "@/app/components/editor/site-editor";
 import { RedirectToSignIn } from "@clerk/nextjs";
 import LeftSidebar from "@/app/components/editor/editor-sidebar/left-sidebar";
 import RightSidebar from "@/app/components/editor/editor-sidebar/right-sidebar";
@@ -11,29 +11,29 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 type Props = {
   params: Promise<{
-    pageId: string;
+    siteId: string;
   }>;
 };
 
 const Page = async ({ params }: Props) => {
   const session = await auth();
 
-  const { pageId } = await params;
-  const pageDetails = await db.page.findFirst({
+  const { siteId } = await params;
+  const siteDetails = await db.site.findFirst({
     where: {
-      id: pageId,
+      id: siteId,
     },
   });
 
   // TODO: Display access denied page, add ability for users to request access (?)
-  if (!pageDetails || !(session.userId === pageDetails.userId)) {
+  if (!siteDetails || !(session.userId === siteDetails.userId)) {
     return <RedirectToSignIn />;
   }
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      <EditorProvider pageId={pageId} pageDetails={pageDetails}>
-        <EditorNavigation pageDetails={pageDetails} />
+      <EditorProvider siteId={siteId} siteDetails={siteDetails}>
+        <EditorNavigation siteDetails={siteDetails} />
         <div className="relative flex w-full h-full">
           <div className="flex-shrink-0 relative bg-muted">
             <SidebarProvider>
@@ -42,7 +42,7 @@ const Page = async ({ params }: Props) => {
             </SidebarProvider>
           </div>
           <div className="flex-1 p-0 m-0">
-            <PageEditor pageId={pageId} />
+            <SiteEditor siteId={siteId} />
           </div>
           <div className="flex-shrink-0">
             <RightSidebar />

@@ -26,20 +26,20 @@ Framely is a full-stack Next.js application offering multi-tenancy, custom domai
 ### ✅ **Current Features**
 
 - **Authentication:** User authentication powered by Clerk.
-- **Dashboard:** Create and view pages.
+- **Dashboard:** Create and view sites.
 - **Backend Logic for the Website Builder:** Core backend functionality for handling website structure and data.
-- **Drag-and-Drop Website Builder:** Fully customizable, user-friendly interface for creating web pages.
+- **Drag-and-Drop Website Builder:** Fully customizable, user-friendly interface for creating websites.
 - **Multi-Tenancy:** Full support for subdomains
 
 ### 🚀 **Coming Soon...**
 
 - **Generated CSS Preview:** View and customize the generated CSS for every element
-- **Optimised NextJS Exports:** Export pages as an optimised NextJS build
-- **SEO:** Optimized SEO Ranking for custom pages
+- **Optimised NextJS Exports:** Export sites as an optimised NextJS build
+- **SEO:** Optimized SEO Ranking for custom sites
 - **Dynamic OG Cards:** Automatic Open Graph image generation for user content.
-- **Image Uploads:** Drag-and-drop image uploads for adding visual content to web pages.
-- **Page Analytics:** Track page performance and user behavior.
-- **TailwindCSS Support** Edit a custom page with TailwindCSS attributes
+- **Image Uploads:** Drag-and-drop image uploads for adding visual content to websites.
+- **Site Analytics:** Track site performance and user behavior.
+- **TailwindCSS Support** Edit a custom site with TailwindCSS attributes
 - **Custom Domain Support**
 
 ---

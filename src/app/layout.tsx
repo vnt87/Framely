@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <Script
+        defer
         src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
         data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
         strategy="lazyOnload"

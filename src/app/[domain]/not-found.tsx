@@ -17,7 +17,7 @@ export default async function NotFound() {
       />
       <div className="flex flex-col items-center gap-y-4">
         <p className="text-lg">
-          Oops! You found a page that doesnt exist (yet)!
+          Oops! You found a site that does not exist (yet)!
         </p>
         <Button asChild>
           <Link href={getLink({})}>Dashboard</Link>

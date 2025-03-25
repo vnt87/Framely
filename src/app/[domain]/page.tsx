@@ -1,8 +1,9 @@
-import { getPageByDomain } from "@/lib/actions/page";
+import { getSiteByDomain } from "@/lib/actions/page";
 import { notFound } from "next/navigation";
 import EditorProvider from "../providers/editor-provider";
-import PageEditor from "../components/editor/page-editor";
+import SiteEditor from "../components/editor/site-editor";
 import { Suspense } from "react";
+import Script from "next/script";
 
 function LoadingState() {
   return (
@@ -15,7 +16,7 @@ function LoadingState() {
 async function Page({ params }: { params: Promise<{ domain: string }> }) {
   const { domain } = await params;
 
-  const response = await getPageByDomain(domain.toString());
+  const response = await getSiteByDomain(domain.toString());
   if (!response.success) return notFound();
 
   if (response.private) {
@@ -26,14 +27,22 @@ async function Page({ params }: { params: Promise<{ domain: string }> }) {
     );
   }
 
-  if (!response.page) return notFound();
+  if (!response.site) return notFound();
 
   return (
-    <Suspense fallback={<LoadingState />}>
-      <EditorProvider pageDetails={response.page} pageId={response.page.id}>
-        <PageEditor pageId={response.page.id} liveMode />
-      </EditorProvider>
-    </Suspense>
+    <div>
+      <Script
+        defer
+        src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+        data-tag={domain}
+      />
+      <Suspense fallback={<LoadingState />}>
+        <EditorProvider siteDetails={response.site} siteId={response.site.id}>
+          <SiteEditor siteId={response.site.id} liveMode />
+        </EditorProvider>
+      </Suspense>
+    </div>
   );
 }
 

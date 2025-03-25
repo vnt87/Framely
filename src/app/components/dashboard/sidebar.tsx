@@ -39,7 +39,7 @@ import { useTheme } from "next-themes";
 
 const items = [
   { title: "Overview", url: "#", icon: LayoutDashboard },
-  { title: "Pages", url: "#", icon: Globe },
+  { title: "Sites", url: "#", icon: Globe },
   { title: "Analytics", url: "#", icon: ChartLine },
   { title: "Settings", url: "#", icon: Settings },
 ];

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { deletePage } from "@/lib/actions/page";
+import { deleteSite } from "@/lib/actions/page";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,20 +11,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Globe, Clock, ExternalLink } from "lucide-react";
 import { formatTimeAgo } from "@/lib/utils";
-import { Page } from "@prisma/client";
+import { Site } from "@prisma/client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { getLink } from "@/lib/getLink";
 
-function PageItem({ page }: { page: Page }) {
+function PageItem({ site }: { site: Site }) {
   const router = useRouter();
 
-  const handleDelete = async (pageId: string) => {
-    const result = await deletePage(pageId);
+  const handleDelete = async (siteId: string) => {
+    const result = await deleteSite(siteId);
     if (result.success) {
-      toast.success("Success", { description: "Page deleted successfully" });
+      toast.success("Success", { description: "Site deleted successfully" });
     } else {
-      toast.error("Error", { description: "Failed to delete page" });
+      toast.error("Error", { description: "Failed to delete site" });
     }
 
     router.refresh();
@@ -35,14 +35,14 @@ function PageItem({ page }: { page: Page }) {
       <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0 group">
         <div className="flex-1">
           <Link
-            href={getLink({ subdomain: "editor", pathName: page.id })}
+            href={getLink({ subdomain: "editor", pathName: site.id })}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1"
           >
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold transition-colors group-hover:text-primary">
-                {page.title}
+                {site.title}
               </h2>
               <ExternalLink className="w-4 h-4 opacity-0 transition-opacity group-hover:opacity-50" />
             </div>
@@ -62,7 +62,7 @@ function PageItem({ page }: { page: Page }) {
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuItem
               className="flex items-center gap-2 text-destructive"
-              onClick={() => handleDelete(page.id)}
+              onClick={() => handleDelete(site.id)}
             >
               Delete
             </DropdownMenuItem>
@@ -74,17 +74,17 @@ function PageItem({ page }: { page: Page }) {
           <div className="flex items-center gap-2 group hover:cursor-pointer">
             <Globe className="flex-shrink-0 w-4 h-4 mt-1 group-hover:text-primary" />
             <Link
-              href={getLink({ subdomain: page.subdomain })}
+              href={getLink({ subdomain: site.subdomain })}
               target="_blank"
               rel="noopener noreferrer"
               className="group-hover:text-primary"
             >
-              {page.subdomain}.framely.site
+              {site.subdomain}.framely.site
             </Link>
           </div>
           <div className="flex items-center gap-2">
             <Clock className="flex-shrink-0 w-4 h-4 mt-1" />
-            <span>Updated {formatTimeAgo(Number(page.updatedAt))}</span>
+            <span>Updated {formatTimeAgo(Number(site.updatedAt))}</span>
           </div>
         </div>
       </CardContent>
