@@ -1,14 +1,14 @@
 import React from "react";
 import AppSidebar from "../components/dashboard/sidebar";
-import PageList from "../components/dashboard/page-list";
+import SiteList from "../components/dashboard/site-list";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
-const Dashboard = () => {
+const Dashboard = async () => {
   return (
     <SidebarProvider>
       <div className="flex w-screen h-screen">
         <AppSidebar />
-        <PageList />
+        <SiteList />
       </div>
     </SidebarProvider>
   );
