@@ -1,9 +1,11 @@
 export function getLink({
   subdomain,
   pathName = "",
+  method = true,
 }: {
   subdomain?: string;
   pathName?: string;
+  method?: boolean;
 }): string {
   const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
   if (!rootDomain) {
@@ -13,5 +15,5 @@ export function getLink({
   const formattedSubdomain = subdomain ? `${subdomain}.` : "";
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
 
-  return `${protocol}://${formattedSubdomain}${rootDomain}/${pathName}`;
+  return `${method ? protocol + "://" : ""}${formattedSubdomain}${rootDomain}/${pathName}`;
 }
