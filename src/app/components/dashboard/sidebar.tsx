@@ -46,8 +46,8 @@ const items = [
 
 const externalLinks = [
   {
-    title: "Star on Github",
-    href: "https://github.com/belastrittmatter/framely",
+    title: "Created by Nam Vu",
+    href: "https://namvu.net",
     icon: Github,
   },
 ];
